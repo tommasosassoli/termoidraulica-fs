@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final utlizzo versione della libreria JasperReports6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Fattura" pageWidth="595" pageHeight="842" columnWidth="539" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="c1f042a3-9217-407a-aae8-2d3f922aea57">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<parameter name="NOME_AZIENDA" class="java.lang.String"/>
+	<parameter name="TELEFONO" class="java.lang.String"/>
+	<parameter name="SEDE" class="java.lang.String"/>
+	<parameter name="CITTA" class="java.lang.String"/>
+	<parameter name="CAP" class="java.lang.String"/>
+	<parameter name="PROVINCIA" class="java.lang.String"/>
+	<parameter name="IBAN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="cliente" class="fatture.model.Cliente">
+		<fieldDescription><![CDATA[cliente]]></fieldDescription>
+	</field>
+	<field name="dataInserimento" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[dataInserimento]]></fieldDescription>
+	</field>
+	<field name="formatDataScadenza" class="java.lang.String">
+		<fieldDescription><![CDATA[formatDataScadenza]]></fieldDescription>
+	</field>
+	<field name="formatDataInserimento" class="java.lang.String">
+		<fieldDescription><![CDATA[formatDataInserimento]]></fieldDescription>
+	</field>
+	<field name="materiali" class="java.util.List"/>
+	<field name="imponibili" class="java.util.List">
+		<fieldDescription><![CDATA[imponibili]]></fieldDescription>
+	</field>
+	<field name="subTotaleFattura" class="java.lang.Double">
+		<fieldDescription><![CDATA[subTotaleFattura]]></fieldDescription>
+	</field>
+	<field name="Acconto" class="java.lang.Double">
+		<fieldDescription><![CDATA[acconto]]></fieldDescription>
+	</field>
+	<field name="totaleImponibile" class="java.lang.Double">
+		<fieldDescription><![CDATA[totaleImponibile]]></fieldDescription>
+	</field>
+	<field name="totaleImposta" class="java.lang.Double">
+		<fieldDescription><![CDATA[totaleImposta]]></fieldDescription>
+	</field>
+	<field name="totaleFattura" class="java.lang.Double">
+		<fieldDescription><![CDATA[totaleFattura]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="215" splitType="Stretch">
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="0" y="0" width="229" height="80" uuid="5dfd17ad-f6fc-44bc-b50d-067bebffb3e6"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA["report/img/logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="10" width="308" height="15" uuid="80bae325-d052-48a8-a6a9-7fb2530ee1bf"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Kristen ITC" size="8"/>
+				</textElement>
+				<text><![CDATA[IMPIANTI IDROTERMOSANITARI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="30" width="308" height="15" uuid="bf3d797e-6a0f-4912-ad20-11976ee1d43a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Kristen ITC" size="8"/>
+				</textElement>
+				<text><![CDATA[INSTALLAZiONE  CALDAIE  A BIOMASSA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="50" width="308" height="15" uuid="a17b4162-df87-45c4-8f27-010817103b7c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Kristen ITC" size="8"/>
+				</textElement>
+				<text><![CDATA[INSTALLAZIONE CERTIFICATA IMPIANTI DI CONDIZIONAMENTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="80" width="538" height="1" forecolor="#3333FF" uuid="6869c8de-6794-4832-bf13-fe17ef53311b"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="158" width="274" height="19" uuid="22ac73a4-4ce3-472e-9f4c-72d43cafe772"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reg.  Ditte  383538    albo  Artigiani   118488  Iscrit.  Trib. Po  12708
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="329" y="120" width="210" height="30" uuid="a9f18fb2-680b-4e92-93c5-d3cf6b2d5758"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.toString().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="150" width="210" height="20" uuid="68a96b91-b3e4-4372-aa5d-ea408b248d6e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getResidenza().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="170" width="210" height="20" uuid="7c55c278-3f1a-440c-bad4-f3feeb73e4e6"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getCap() + " " + $F{cliente}.getComune().toUpperCase() + " " + $F{cliente}.getProvincia()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="90" width="428" height="18" uuid="ba6ee926-1db3-4fd0-9362-424354e6fb23"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Res. o Dom. ub. dell' Es.  50041 Calenzano  (Fi) - Via del lago n.  4  Fax  055 8816427]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="110" width="274" height="30" uuid="de184826-e2c6-4311-bc5b-c19c0b178339"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Referenti  Franco cel. 3477954387  Graziano cel.  3483410913   
+email l  termoidraulica.sassoli@gmail.com.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="140" width="274" height="18" uuid="5d5006d9-eca7-4011-9d99-3e540702aa3e"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reg.  Imprese  di  Firenze  e  Cod.  Fisc.  e   Par. iva  n.  03716760487 ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="190" width="40" height="20" uuid="508d7f08-ddc1-42e4-b014-a39a91cd34bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id} + "/" + $F{dataInserimento}.format(java.time.format.DateTimeFormatter.ofPattern("yy"))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="190" width="104" height="20" uuid="acad7283-e9ab-4e11-9661-83cce47507cc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formatDataScadenza}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="190" width="119" height="20" uuid="ee8d625e-1b5d-45b1-bbbf-cb73fd136d94"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[PREVENTIVO NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="190" width="30" height="20" uuid="b8d468a1-ea14-4aa5-b95b-4e1dbb221106"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="213" width="539" height="1" forecolor="#3333FF" uuid="41f6bff6-c743-4ff3-ba56-078262832d7d"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="52">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<subreport isUsingCache="false" runToBottom="false" overflowType="Stretch">
+				<reportElement key="" stretchType="ElementGroupHeight" isPrintRepeatedValues="false" x="0" y="0" width="538" height="52" isRemoveLineWhenBlank="true" uuid="2b71f97d-6be9-44f7-b985-37dc19ed37c3"/>
+				<subreportParameter name="MATERIALI">
+					<subreportParameterExpression><![CDATA[]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{materiali})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/Materiali.jrxml"))]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<printWhenExpression><![CDATA[$F{Acconto} > 0]]></printWhenExpression>
+			<textField>
+				<reportElement x="398" y="17" width="100" height="20" uuid="2d598bf5-3dd5-4f3d-a424-1e32676fae11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{subTotaleFattura})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="17" width="104" height="20" uuid="ef81f974-46d3-4fa4-bee6-63179de328e2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBTOTALE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="40" width="100" height="20" uuid="c3ad2b9f-8994-4285-88d7-edf099e1010a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{Acconto})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="40" width="104" height="20" uuid="3590c3ff-e67a-4a37-921b-93e7c4fa8d43"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACCONTO]]></text>
+			</staticText>
+		</band>
+		<band height="143">
+			<staticText>
+				<reportElement x="293" y="70" width="104" height="20" uuid="db01da0f-63eb-4947-b86b-cd7952d47fa0"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[TOTALE  € ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="70" width="100" height="20" uuid="91a2137d-289c-4b3d-8dcd-0ba5967d17a5"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{totaleFattura})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="20" width="100" height="20" uuid="b4233e50-5bc2-46dc-928c-0882381ecf06"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{totaleImponibile})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="44" width="100" height="20" uuid="3bda7ac5-aaab-4538-979b-017826a03e8c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{totaleImposta})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="20" width="104" height="20" uuid="6f05653b-f05d-42bd-ae78-c6b07a038d91"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTALE IMPONIBILE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="44" width="104" height="20" uuid="024b9e68-8cc6-475b-b798-49f1a2505f35"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTALE IVA]]></text>
+			</staticText>
+			<subreport overflowType="NoStretch">
+				<reportElement x="0" y="17" width="259" height="95" uuid="571aa10b-401c-4920-9c71-e3983ea6db12"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{imponibili})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/importiIva.jrxml"))]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="410" y="20" width="66" height="18" uuid="c2611d99-c61e-4aaf-b969-00a84d2e844e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="476" y="20" width="60" height="18" uuid="81bca58d-2bee-4261-8137-de5f55196f36"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" di " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

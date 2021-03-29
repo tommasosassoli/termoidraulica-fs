@@ -1,0 +1,18 @@
+<lista_aliquote_iva>
+	<aliquota_iva>
+		<aliquota>22</aliquota>
+		<descrizione_aliquota>Ordinaria</descrizione_aliquota>	
+	</aliquota_iva>
+	<aliquota_iva>
+		<aliquota>10</aliquota>
+		<descrizione_aliquota>Ridotta</descrizione_aliquota>	
+	</aliquota_iva>
+	<aliquota_iva>
+		<aliquota>4</aliquota>
+		<descrizione_aliquota>Minima</descrizione_aliquota>	
+	</aliquota_iva>
+	<aliquota_iva>
+		<aliquota>0</aliquota>
+		<descrizione_aliquota>Esente</descrizione_aliquota>	
+	</aliquota_iva>
+</lista_aliquote_iva>

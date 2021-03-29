@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+<MenuBar xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatture.view.MenuBarController">
+   <menus>
+      <Menu mnemonicParsing="false" text="Opzioni">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#goPrincipale" text="Home" />
+            <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Chiudi" />
+         </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Dati">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#saveModified" text="Salva" />
+            <MenuItem mnemonicParsing="false" onAction="#refreshData" text="Aggiorna" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#restoreBackup" text="Ripristina Backup" />
+         </items>
+      </Menu>
+   </menus>
+</MenuBar>
