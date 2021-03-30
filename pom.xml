@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tfs</groupId>
-    <artifactId>termoidraulica-fs</artifactId>
+    <artifactId>termoidraulica_fs</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -75,8 +75,21 @@
                     <jlinkImageName>Termoidraulica-fs</jlinkImageName>
                     <jlinkZipName>Termoidraulica-fs</jlinkZipName>
                     <launcher>launcher-tfs</launcher>
-                    <mainClass>fatture.MainFatture</mainClass>
+                    <mainClass>termoidraulica_fs/fatture.MainFatture</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>run</id>
+                    </execution>
+                    <execution>
+                        <id>debug</id>
+                        <configuration>
+                            <options>
+                                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005</option>
+                            </options>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
