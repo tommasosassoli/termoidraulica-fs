@@ -12,8 +12,8 @@ module termoidraulica_fs {
 
     requires jasperreports;
 
-    opens fatture.view to javafx.fxml;
-    opens fatture.model to javafx.base, com.fasterxml.jackson.databind;
-    opens fatture.model.serialization to com.fasterxml.jackson.databind;
-    exports fatture;
+    opens tfs.estimates.view to javafx.fxml;
+    opens tfs.estimates.model to javafx.base, com.fasterxml.jackson.databind;
+    opens tfs.estimates.model.serialization to com.fasterxml.jackson.databind;
+    exports tfs.estimates;
 }

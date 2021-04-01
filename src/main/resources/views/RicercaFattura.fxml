@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="757.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatture.view.RicercaFatturaController">
+<AnchorPane prefHeight="757.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.RicercaFatturaController">
    <children>
       <TextField fx:id="searchBar" layoutX="198.0" layoutY="14.0" onAction="#filterList" prefHeight="36.0" prefWidth="468.0" promptText="RICERCA NELLA LISTA" />
       <ComboBox fx:id="searchField" layoutX="680.0" layoutY="14.0" prefHeight="36.0" prefWidth="186.0" />

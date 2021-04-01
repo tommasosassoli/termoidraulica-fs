@@ -4,7 +4,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="iva" class="fatture.model.AliquotaIva">
+	<field name="iva" class="tfs.estimates.model.TaxRate">
 		<fieldDescription><![CDATA[iva]]></fieldDescription>
 	</field>
 	<field name="imponibile" class="java.lang.Double">

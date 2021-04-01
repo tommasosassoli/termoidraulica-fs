@@ -17,8 +17,8 @@
 	<field name="id" class="java.lang.String">
 		<fieldDescription><![CDATA[id]]></fieldDescription>
 	</field>
-	<field name="cliente" class="fatture.model.Cliente">
-		<fieldDescription><![CDATA[cliente]]></fieldDescription>
+	<field name="client" class="tfs.estimates.model.Client">
+		<fieldDescription><![CDATA[client]]></fieldDescription>
 	</field>
 	<field name="dataInserimento" class="java.time.LocalDateTime">
 		<fieldDescription><![CDATA[dataInserimento]]></fieldDescription>
@@ -52,21 +52,21 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cliente}.toString().toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{client}.toString().toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="307" y="62" width="210" height="20" uuid="68a96b91-b3e4-4372-aa5d-ea408b248d6e"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cliente}.getResidenza().toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{client}.getResidenza().toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="307" y="82" width="210" height="20" uuid="7c55c278-3f1a-440c-bad4-f3feeb73e4e6"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cliente}.getCap() + " " + $F{cliente}.getComune().toUpperCase() + " " + $F{cliente}.getProvincia()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{client}.getCap() + " " + $F{client}.getComune().toUpperCase() + " " + $F{client}.getProvincia()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="50" y="50" width="104" height="20" uuid="acad7283-e9ab-4e11-9661-83cce47507cc"/>

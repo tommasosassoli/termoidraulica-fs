@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="767.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatture.view.RicercaClientiController">
+<AnchorPane prefHeight="767.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.RicercaClientiController">
    <children>
       <Button layoutX="755.0" layoutY="14.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#filterList" prefHeight="35.0" prefWidth="41.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="14.0">
          <graphic>

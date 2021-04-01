@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane onKeyPressed="#viewKeyEvent" prefHeight="898.0" prefWidth="1202.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatture.view.ModificaFatturaController">
+<AnchorPane onKeyPressed="#viewKeyEvent" prefHeight="898.0" prefWidth="1202.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.ModificaFatturaController">
    <children>
       <Text layoutX="291.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Preventivo">
          <font>
@@ -50,8 +50,8 @@
       <Text layoutX="182.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="RIGHT" wrappingWidth="37.72706091403961" />
       <TextField fx:id="id" disable="true" editable="false" layoutX="269.0" layoutY="120.0" />
       <Text layoutX="165.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENTE" />
-      <ComboBox fx:id="clientiBar" layoutX="269.0" layoutY="169.0" onAction="#setModified" prefHeight="31.0" prefWidth="450.0" promptText="Seleziona un cliente" />
-      <Hyperlink layoutX="736.0" layoutY="170.0" onAction="#searchCliente" style="-fx-text-fill: -fx-accent; -fx-underline: false;" text="Cerca un cliente" />
+      <ComboBox fx:id="clientiBar" layoutX="269.0" layoutY="169.0" onAction="#setModified" prefHeight="31.0" prefWidth="450.0" promptText="Seleziona un client" />
+      <Hyperlink layoutX="736.0" layoutY="170.0" onAction="#searchCliente" style="-fx-text-fill: -fx-accent; -fx-underline: false;" text="Cerca un client" />
       <Hyperlink fx:id="removeFilter" layoutX="852.0" layoutY="170.0" onAction="#removeFilter" style="-fx-text-fill: -fx-accent; -fx-underline: false;" text="Rimuovi filtro" visible="false" />
       <Text layoutX="103.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATA di RIFERIMENTO" />
       <DatePicker fx:id="dataFattura" layoutX="269.0" layoutY="217.0" onAction="#setModified" prefHeight="31.0" prefWidth="450.0" />

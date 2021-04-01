@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="862.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fatture.view.ModificaClienteController">
+<AnchorPane prefHeight="862.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.ModificaClienteController">
    <children>
       <Text layoutX="363.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Cliente" textAlignment="CENTER">
          <font>
