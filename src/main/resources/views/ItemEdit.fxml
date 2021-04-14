@@ -3,10 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane onKeyPressed="#viewKeyEvent" prefHeight="633.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.ModificaMaterialeController">
+<AnchorPane onKeyPressed="#viewKeyEvent" prefHeight="633.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="398.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Riga Preventivo">
          <font>
@@ -23,7 +21,7 @@
          </font></Text>
       <GridPane alignment="TOP_CENTER" hgap="20.0" layoutY="80.0" prefHeight="517.0" prefWidth="1002.0" vgap="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="10.0" prefWidth="146.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="502.0" minWidth="10.0" prefWidth="146.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="877.0" minWidth="10.0" prefWidth="856.0" />
         </columnConstraints>
         <rowConstraints>
@@ -39,7 +37,7 @@
                   <Insets top="5.0" />
                </GridPane.margin>
             </Text>
-            <TextArea fx:id="descrizione" prefHeight="38.0" prefWidth="871.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+            <TextArea fx:id="description" prefHeight="38.0" prefWidth="871.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                <font>
                   <Font size="15.0" />
                </font></TextArea>
@@ -65,35 +63,23 @@
                   </Text>
                   <TextField fx:id="um" maxWidth="100.0" prefHeight="25.0" GridPane.columnIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITA':" wrappingWidth="92.275390625" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                  <TextField fx:id="quantita" maxWidth="100.0" GridPane.columnIndex="3" />
+                  <TextField fx:id="quantity" maxWidth="100.0" GridPane.columnIndex="3" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="P. UNITARIO:" wrappingWidth="92.84967041015625" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Text>
-                  <TextField fx:id="prezzoUnitario" maxWidth="100.0" GridPane.columnIndex="5" />
+                  <TextField fx:id="price" maxWidth="100.0" GridPane.columnIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PREZZO:" wrappingWidth="71.70471167564392" GridPane.columnIndex="6" GridPane.halignment="RIGHT" />
-                  <TextField fx:id="prezzo" maxWidth="100.0" GridPane.columnIndex="7" />
+                  <TextField fx:id="calculatedPrice" maxWidth="100.0" GridPane.columnIndex="7" />
                </children>
             </GridPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IVA" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <ComboBox fx:id="iva" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="taxRate" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SCONTO" GridPane.rowIndex="3" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <children>
-                  <RadioButton fx:id="scontoCheckBox" mnemonicParsing="false" selected="true" text="SCONTO">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="scontoMaggiorazione" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="maggiorazioneCheckBox" mnemonicParsing="false" text="MAGGIORAZIONE" toggleGroup="$scontoMaggiorazione">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <TextField fx:id="valoreScontoMaggiorazione" promptText="VALORE">
+                  <TextField fx:id="discount" promptText="VALORE">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>

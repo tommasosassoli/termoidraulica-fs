@@ -9,7 +9,7 @@ import tfs.estimates.management.logic.CompanyDataManagement;
 import tfs.estimates.management.logic.EstimatesManagement;
 import tfs.estimates.model.Estimate;
 import tfs.estimates.service.LogService;
-import tfs.estimates.util.FileNameResolver;
+import tfs.estimates.resolvers.FileResolver;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
@@ -37,7 +37,7 @@ public class FattureFactory {
 		return param;
 	}
 
-	public static void printReportFattura(String id, FileNameResolver fileName) {
+	public static void printReportFattura(String id, FileResolver fileName) {
 		try {
 			LogService.info(FattureFactory.class, "Printing...");
 
@@ -64,6 +64,6 @@ public class FattureFactory {
 	}
 	
 	public static void printReportFattura(String id) {
-		FattureFactory.printReportFattura(id, FileNameResolver.REPORT_ESTIMATE);
+		FattureFactory.printReportFattura(id, FileResolver.REPORT_ESTIMATE);
 	}
 }

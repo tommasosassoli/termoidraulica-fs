@@ -2,11 +2,11 @@ package tfs.estimates;
 
 import tfs.estimates.service.AutoSaveService;
 import tfs.estimates.service.LogService;
-import tfs.estimates.view.MainViewController;
+import tfs.estimates.view.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainFatture extends Application{
+public class MainEstimates extends Application {
 	private Thread autoSave;
 
 	public static void main(String[] args) {
@@ -15,13 +15,19 @@ public class MainFatture extends Application{
 
 	@Override
 	public void start(Stage primaryStage) {
-		LogService.info(MainFatture.class, "::: Welcome in Termoidraulica-fs software! :::");
-		MainViewController.instance().loadView(primaryStage);
-		
+		LogService.info(MainEstimates.class, "::: Welcome in Termoidraulica-fs software! :::");
+
 		//start saveManagement thread
 		AutoSaveService sm = new AutoSaveService();
 		autoSave = new Thread(sm, "Auto Save Thread");
 		autoSave.start();
+
+		try {
+			ViewManager viewManager = new ViewManager(primaryStage);
+			viewManager.start();
+		} catch (Exception e) {
+			LogService.warning(ViewManager.class, "Exception ", false, e);
+		}
 	}
 
 	@Override

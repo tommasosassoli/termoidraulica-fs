@@ -83,7 +83,7 @@
                     <jlinkImageName>Termoidraulica-fs</jlinkImageName>
                     <jlinkZipName>Termoidraulica-fs</jlinkZipName>
                     <launcher>launcher-tfs</launcher>
-                    <mainClass>termoidraulica_fs/tfs.estimates.MainFatture</mainClass>
+                    <mainClass>termoidraulica_fs/tfs.estimates.MainEstimates</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="757.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="searchBar" layoutX="198.0" layoutY="14.0" onAction="#applyFilter" prefHeight="36.0" prefWidth="468.0" promptText="RICERCA NELLA LISTA" />
+      <ComboBox fx:id="searchField" layoutX="680.0" layoutY="14.0" prefHeight="36.0" prefWidth="186.0" />
+      <Button layoutX="879.0" layoutY="14.0" mnemonicParsing="false" onAction="#applyFilter" prefHeight="29.0" prefWidth="39.0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/search.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <TableView fx:id="estimateTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <columns>
+          <TableColumn fx:id="estimateIdCol" prefWidth="123.0" text="ID PREVENTIVO" />
+          <TableColumn fx:id="clientsCol" prefWidth="438.0" text="CLIENTE" />
+            <TableColumn fx:id="insertDateCol" prefWidth="222.0" text="DATA INSERIMENTO" />
+            <TableColumn fx:id="expirationDateCol" prefWidth="208.0" text="DATA di RIFERIMENTO" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Hyperlink layoutX="39.0" layoutY="18.0" onAction="#backButton" text="&lt;- Indietro" />
+      <ImageView fx:id="cancelFilter" fitHeight="27.0" fitWidth="31.0" layoutX="639.0" layoutY="18.0" onMouseClicked="#removeFilter" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@icons/delete.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

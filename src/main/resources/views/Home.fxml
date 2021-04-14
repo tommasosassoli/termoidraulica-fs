@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="734.0" minWidth="984.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tfs.estimates.view.PrincipaleController">
+<AnchorPane minHeight="734.0" minWidth="984.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefHeight="220.0" prefWidth="984.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="logoAzienda" accessibleRole="PARENT" fitHeight="172.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/account.png" />
+                  <Image url="@icons/logo.png" />
                </image></ImageView>
          </children>
       </StackPane>
@@ -35,12 +35,12 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#loadInserimentoCliente" prefHeight="36.0" prefWidth="118.0" text="Inserimento">
+                        <Button mnemonicParsing="false" onAction="#clientInsert" prefHeight="36.0" prefWidth="118.0" text="Inserimento">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#loadRicercaCliente" prefHeight="36.0" prefWidth="118.0" text="Ricerca">
+                        <Button mnemonicParsing="false" onAction="#clientList" prefHeight="36.0" prefWidth="118.0" text="Ricerca">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -57,12 +57,12 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#loadInserimentoFattura" prefHeight="36.0" prefWidth="118.0" text="Inserimento">
+                        <Button mnemonicParsing="false" onAction="#estimateInsert" prefHeight="36.0" prefWidth="118.0" text="Inserimento">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#loadRiceraFattura" prefHeight="36.0" prefWidth="118.0" text="Ricerca">
+                        <Button mnemonicParsing="false" onAction="#estimateList" prefHeight="36.0" prefWidth="118.0" text="Ricerca">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -75,7 +75,7 @@
       </StackPane>
       <StackPane layoutY="562.0" prefHeight="172.0" prefWidth="984.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#loadModificaDatiAzienda" prefHeight="36.0" prefWidth="176.0" text="Dati Azienda" />
+            <Button mnemonicParsing="false" onAction="#companyDataEdit" prefHeight="36.0" prefWidth="176.0" text="Dati Azienda" />
          </children>
       </StackPane>
    </children>

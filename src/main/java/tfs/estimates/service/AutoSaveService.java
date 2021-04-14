@@ -4,7 +4,6 @@ import tfs.estimates.management.storage.BackupManager;
 import tfs.estimates.management.logic.ClientsManagement;
 import tfs.estimates.management.logic.CompanyDataManagement;
 import tfs.estimates.management.logic.EstimatesManagement;
-import tfs.estimates.view.MainViewController;
 
 public class AutoSaveService implements Runnable {
 	private static boolean modified = false;
@@ -44,7 +43,7 @@ public class AutoSaveService implements Runnable {
 	public static void saveAll() {
 		ClientsManagement.instance().commitData();
 		EstimatesManagement.instance().commitData();
-		CompanyDataManagement.instance().commitDatiAzienda();
+		CompanyDataManagement.instance().commitCompanyData();
 
 		modified = false;
 		backupToSave = true;
@@ -75,7 +74,7 @@ public class AutoSaveService implements Runnable {
 	public static boolean restoreBackup(String fileName) {
 		//boolean result = backupManager.restoreBackup(fileName);//TODO backup
 		reloadData();
-		MainViewController.instance().setView("Principale");
+		//ViewManager.instance().setView("Principale");
 		//return result;
 		return false;
 	}

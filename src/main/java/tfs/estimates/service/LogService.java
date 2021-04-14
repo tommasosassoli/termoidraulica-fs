@@ -3,7 +3,7 @@ package tfs.estimates.service;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import tfs.estimates.view.MainViewController;
+import tfs.estimates.view.ViewManager;
 
 /**
  * Wrapper Class for Log4j2 plugin
@@ -33,7 +33,7 @@ public class LogService {
 		log.error(msg, thrown);
 
 		if (reportToUser)
-			MainViewController.launchErrorDialog(msg);
+			ViewManager.launchErrorDialog(msg);
 	}
 
 	public static <T> void warning(Class<T> classToLog, String msg) {
@@ -49,7 +49,7 @@ public class LogService {
 		log.warn(msg, thrown);
 
 		if (reportToUser)
-			MainViewController.launchWarningDialog(msg);
+			ViewManager.launchWarningDialog(msg);
 	}
 
 	public static void info(Class<?> classToLog, String msg) {
@@ -61,7 +61,7 @@ public class LogService {
 		log.info(msg);
 
 		if (reportToUser)
-			MainViewController.launchInfoDialog(msg);
+			ViewManager.launchInfoDialog(msg);
 	}
 
 	public static void debug(Class<?> classToLog, String msg) {

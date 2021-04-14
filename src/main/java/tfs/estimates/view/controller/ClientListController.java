@@ -1,52 +1,56 @@
-package tfs.estimates.view;
+package tfs.estimates.view.controller;
 
 import tfs.estimates.management.logic.ClientsManagement;
 import tfs.estimates.model.Client;
+import tfs.estimates.resolvers.ViewResolver;
 import tfs.estimates.util.StringComparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import tfs.estimates.view.ViewManager;
 
-public class RicercaClientiController {
+public class ClientListController extends AbstractController {
 	@FXML
 	private TextField searchBar;
 	@FXML
 	private ImageView cancelButton;
 	@FXML
-	private TableView<Client> tableClienti = new TableView<Client>();
+	private TableView<Client> clientsTable = new TableView<>();
 	@FXML
-	private TableColumn<Client, String> columnID = new TableColumn<Client, String>("id");
+	private TableColumn<Client, String> idColumn = new TableColumn<>();
 	@FXML
-	private TableColumn<Client, String> columnNome = new TableColumn<Client, String>("nome");
+	private TableColumn<Client, String> nameColumn = new TableColumn<>();
 
 	private ObservableList<Client> masterList;
 
+	public ClientListController(ViewManager viewManager) {
+		super(viewManager);
+	}
+
 	public void initialize() {
-		columnID.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
-		columnNome.setCellValueFactory(new PropertyValueFactory<Client, String>("nomeCognome"));
+		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("surnameName"));
 
-		masterList = getClienti();
-
-		tableClienti.setItems(masterList);
-
-		tableClienti.setOnMouseClicked(new EventHandler<MouseEvent>() { // imposto il double click
-			@Override
-			public void handle(MouseEvent event) {
-				if (event.getClickCount() > 1)
-					openCliente();
-			}
+		// set double click
+		clientsTable.setOnMouseClicked(event -> {
+			if (event.getClickCount() > 1)
+				openClient();
 		});
 
 	}
 
-	private ObservableList<Client> getClienti() {
+	@Override
+	public void refresh() {
+		masterList = getClients();
+		clientsTable.setItems(masterList);
+	}
+
+	private ObservableList<Client> getClients() {
 		ObservableList<Client> list = FXCollections.observableArrayList();
 		list.addAll(ClientsManagement.instance().getClients());
 
@@ -64,27 +68,25 @@ public class RicercaClientiController {
 					filterList.add(c);
 			}
 
-			tableClienti.setItems(filterList);
+			clientsTable.setItems(filterList);
 			cancelButton.setVisible(true);
 		}
 	}
 
 	@FXML
 	private void unfilterList() {
-		tableClienti.setItems(masterList);
+		clientsTable.setItems(masterList);
 		searchBar.clear();
 		cancelButton.setVisible(false);
 	}
 
-	@FXML
-	private void openCliente() {
-		Client c = tableClienti.getSelectionModel().getSelectedItem();
-		ModificaClienteController.setIDCliente(c.getId());		
-		MainViewController.instance().setView("ModificaCliente");
+	private void openClient() {
+		Client c = clientsTable.getSelectionModel().getSelectedItem();
+		this.getViewManager().activate(ViewResolver.CLIENT_EDIT, c.getId());
 	}
 
 	@FXML
 	private void backButton() {
-		MainViewController.instance().setView("Principale");
+		this.getViewManager().activate(ViewResolver.HOME);
 	}
 }

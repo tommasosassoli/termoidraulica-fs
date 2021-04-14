@@ -1,8 +1,8 @@
-package tfs.estimates.util;
+package tfs.estimates.resolvers;
 
 import java.util.ArrayList;
 
-public enum FileNameResolver {
+public enum FileResolver {
 	CLIENTS(			"files/store",		"clients",		"xml",			true,	1),
 	ESTIMATES(			"files/store",		"estimates",		"xml",			true,	1),
 	COMPANY_DATA(		"files/config",	"company_data",	"properties",	true,	1),
@@ -24,7 +24,7 @@ public enum FileNameResolver {
 
 	public static final String ROOT_PATH = System.getProperty("user.dir");
 	
-	FileNameResolver(String path, String name, String extension, boolean editable, int type) {
+	FileResolver(String path, String name, String extension, boolean editable, int type) {
 		this.path = path;
 		this.name = name;
 		this.extension = extension;
@@ -55,12 +55,12 @@ public enum FileNameResolver {
 	 * @param prefix -> like the path to the root project folder
 	 * */
 	public static String[] getStorageLocations(String prefix) {
-		FileNameResolver[] list = FileNameResolver.values();
+		FileResolver[] list = FileResolver.values();
 
 		ArrayList<String> tmp = new ArrayList<>();
-		for (FileNameResolver fileNameResolver : list)
-			if (fileNameResolver.type() == 1)
-				tmp.add(prefix + fileNameResolver.path + "/" + fileNameResolver.name + "." + fileNameResolver.extension());
+		for (FileResolver fileResolver : list)
+			if (fileResolver.type() == 1)
+				tmp.add(prefix + fileResolver.path + "/" + fileResolver.name + "." + fileResolver.extension());
 
 		String[] strList = new String[tmp.size()];
 		tmp.toArray(strList);
@@ -69,6 +69,6 @@ public enum FileNameResolver {
 	}
 
 	public static String[] getStorageLocations() {
-		return FileNameResolver.getStorageLocations("");
+		return FileResolver.getStorageLocations("");
 	}
 }
