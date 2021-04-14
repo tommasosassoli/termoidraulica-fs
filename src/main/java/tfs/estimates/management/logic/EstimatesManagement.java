@@ -72,7 +72,6 @@ public class EstimatesManagement {
 		Estimate e = new Estimate(id, c, data);
 
 		estimates.put(e.getId(), e);
-		AutoSaveService.setModified();
 		return id;
 	}
 
@@ -85,18 +84,6 @@ public class EstimatesManagement {
 	}
 
 	public Estimate deleteEstimate(String id) {
-		AutoSaveService.setModified();
 		return estimates.remove(id);
-	}
-
-	public boolean updateEstimate(String id, Estimate newEstimate) {
-		boolean res = false;
-		Estimate oldEstimate = estimates.get(id);
-
-		if (oldEstimate != null && newEstimate != null) {
-			res = estimates.replace(id, oldEstimate, newEstimate);
-			AutoSaveService.setModified();
-		}
-		return res;
 	}
 }

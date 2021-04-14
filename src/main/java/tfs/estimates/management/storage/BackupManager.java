@@ -1,7 +1,7 @@
 package tfs.estimates.management.storage;
 
 import tfs.estimates.service.LogService;
-import tfs.estimates.util.FileNameResolver;
+import tfs.estimates.resolvers.FileResolver;
 import tfs.estimates.util.FileUtils;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.zip.ZipOutputStream;
 
-import static tfs.estimates.util.FileNameResolver.ROOT_PATH;
+import static tfs.estimates.resolvers.FileResolver.ROOT_PATH;
 
 public class BackupManager {
     private final String dateTimePattern = "yyyyLLddHHmmss";
@@ -21,8 +21,8 @@ public class BackupManager {
         try {//TODO make tests
             // locate the files//FIXME NON FUNZIONA LA RISOLUZIONE DELLE RISORSE
             String backupPath = "/backup/backup-" + LocalDateTime.now().format(dateTimeFormatter) + ".zip";
-            String[] filesPaths = FileNameResolver.getStorageLocations(getClass().getResource("/").getPath());
-            String[] filesNames = FileNameResolver.getStorageLocations();
+            String[] filesPaths = FileResolver.getStorageLocations(getClass().getResource("/").getPath());
+            String[] filesNames = FileResolver.getStorageLocations();
 
             // start the zip writing
             FileOutputStream fos = new FileOutputStream(ROOT_PATH + backupPath);

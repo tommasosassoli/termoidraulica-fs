@@ -71,7 +71,6 @@ public class ClientsManagement {
 		Client c = new Client(id, nome, cognome, residenza, comune, provincia, cap, cf, note);
 
 		clients.put(id, c);
-		AutoSaveService.setModified();
 		return id;
 	}
 
@@ -84,18 +83,6 @@ public class ClientsManagement {
 	}
 
 	public Client deleteClient(String id) {
-		AutoSaveService.setModified();
 		return clients.remove(id);
-	}
-
-	public boolean updateClient(String id, Client newClient) {
-		boolean res = false;
-		Client oldClient = clients.get(id);
-
-		if (oldClient != null && newClient != null) {
-			res = clients.replace(id, oldClient, newClient);
-			AutoSaveService.setModified();
-		}
-		return res;
 	}
 }

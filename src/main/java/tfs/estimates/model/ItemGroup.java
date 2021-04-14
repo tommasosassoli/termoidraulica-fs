@@ -8,12 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemGroup {
+    @JsonProperty("subtotal_description")
+    private String description;
+
     @JacksonXmlElementWrapper(localName = "items_list")
     @JsonProperty("item")
     private List<Item> items = new ArrayList<>();
 
     public ItemGroup() {
 
+    }
+
+    @JsonIgnore
+    public String getDescription() {
+        return description;
+    }
+
+    @JsonProperty("subtotal_description")
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @JsonIgnore
@@ -42,5 +55,10 @@ public class ItemGroup {
         for (Item i : items)
             subtotal += i.getItemSubtotal();
         return subtotal;
+    }
+
+    @JsonIgnore
+    public boolean isEmpty() {
+        return items.isEmpty();
     }
 }

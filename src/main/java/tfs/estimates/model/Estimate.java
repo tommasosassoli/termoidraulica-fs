@@ -70,40 +70,40 @@ public class Estimate {
 	}
 
 	@JsonIgnore
-	public String getFormatDataScadenza() {//TODO rename in GUI also
-		LocalDateTime scadenza = this.expirationDate;
+	public String getFormatExpiringDate() {
+		LocalDateTime exp = this.expirationDate;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-		return scadenza.format(formatter);
+		return exp.format(formatter);
 	}
 	
 	@JsonProperty("expiration_date")
-	private void setFormatDataScadenza(String data) {
+	private void setFormatExpiringDate(String data) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
 		this.expirationDate = LocalDateTime.parse(data, formatter);
 	}
 
 	@JsonIgnore
-	public String getFormatDataInserimento() {
-		LocalDateTime scadenza = this.insertDate;
+	public String getFormatInsertDate() {
+		LocalDateTime exp = this.insertDate;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy - H : m : s");
-		return scadenza.format(formatter);
+		return exp.format(formatter);
 	}
 	
 	@JsonProperty("insert_date")
-	private void setFormatDatainserimento(String data) {
+	private void setFormatInsertDate(String data) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
 		this.insertDate = LocalDateTime.parse(data, formatter);
 	}
 
 	@JsonIgnore
-	public Client getCliente() {
+	public Client getClient() {
 		if (client == null)
 			client = ClientsManagement.instance().getClient(clientId);
 		return client;
 	}
 
-	public void setCliente(String IDcliente) {
-		this.clientId = IDcliente;
+	public void setClient(String clientID) {
+		this.clientId = clientID;
 		client = null;
 	}
 

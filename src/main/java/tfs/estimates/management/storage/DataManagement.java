@@ -8,7 +8,7 @@ import tfs.estimates.model.serialization.TaxRatesSerialization;
 import tfs.estimates.model.serialization.ClientsSerialization;
 import tfs.estimates.model.serialization.EstimatesSerialization;
 import tfs.estimates.service.LogService;
-import tfs.estimates.util.FileNameResolver;
+import tfs.estimates.resolvers.FileResolver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class DataManagement {
 	public List<Client> getClients() throws IOException {
 		LogService.trace(DataManagement.class, "Getting clients");
 
-		ClientsSerialization cs = FileManagement.instance().loadXmlFile(FileNameResolver.CLIENTS,
+		ClientsSerialization cs = FileManagement.instance().loadXmlFile(FileResolver.CLIENTS,
 				ClientsSerialization.class);
 
 		LogService.debug(DataManagement.class, (cs.isEmpty()) ? "Clients list is empty" : "Clients list is not empty");
@@ -44,14 +44,14 @@ public class DataManagement {
 	public void commitClients(ClientsSerialization clients) throws IOException {
 		LogService.trace(DataManagement.class, "Putting clients");
 
-		FileManagement.instance().saveXmlFile(FileNameResolver.CLIENTS, clients);
+		FileManagement.instance().saveXmlFile(FileResolver.CLIENTS, clients);
 		saveNextId();
 	}
 
 	public List<Estimate> getEstimates() throws IOException {
 		LogService.trace(DataManagement.class, "Getting Estimate");
 
-		EstimatesSerialization fs = FileManagement.instance().loadXmlFile(FileNameResolver.ESTIMATES,
+		EstimatesSerialization fs = FileManagement.instance().loadXmlFile(FileResolver.ESTIMATES,
 				EstimatesSerialization.class);
 
 		LogService.debug(DataManagement.class, (fs.isEmpty()) ? "Estimate list is empty" : "Estimate list is not empty");
@@ -62,14 +62,14 @@ public class DataManagement {
 	public void commitEstimates(EstimatesSerialization fatture) throws IOException {
 		LogService.trace(DataManagement.class, "Putting Estimate");
 
-		FileManagement.instance().saveXmlFile(FileNameResolver.ESTIMATES, fatture);
+		FileManagement.instance().saveXmlFile(FileResolver.ESTIMATES, fatture);
 		saveNextId();
 	}
 
 	public CompanyData getCompanyData() throws IOException {
 		LogService.trace(DataManagement.class, "Getting company data");
 
-		Properties p = FileManagement.instance().loadProperties(FileNameResolver.COMPANY_DATA);
+		Properties p = FileManagement.instance().loadProperties(FileResolver.COMPANY_DATA);
 
 		LogService.debug(DataManagement.class, (p.isEmpty()) ? "Company data is empty" : "Company data is not empty");
 
@@ -79,13 +79,13 @@ public class DataManagement {
 	public void commitCompanyData(CompanyData data) throws IOException {
 		LogService.trace(DataManagement.class, "Putting company data");
 
-		FileManagement.instance().saveProperties(FileNameResolver.COMPANY_DATA, data.exportInProperties());
+		FileManagement.instance().saveProperties(FileResolver.COMPANY_DATA, data.exportInProperties());
 	}
 
 	public List<TaxRate> getTaxRates() throws IOException {
 		LogService.trace(DataManagement.class, "Getting tax rates");
 
-		TaxRatesSerialization as = FileManagement.instance().loadXmlFile(FileNameResolver.TAX_RATES,
+		TaxRatesSerialization as = FileManagement.instance().loadXmlFile(FileResolver.TAX_RATES,
 				TaxRatesSerialization.class);
 
 		LogService.debug(DataManagement.class, (as.isEmpty()) ? "Tax rate list is empty" : "Tax rate is not empty");
@@ -97,7 +97,7 @@ public class DataManagement {
 		LogService.trace(DataManagement.class, "Getting next id");
 
 		try {
-			Properties ids = FileManagement.instance().loadProperties(FileNameResolver.NEXT_ID);
+			Properties ids = FileManagement.instance().loadProperties(FileResolver.NEXT_ID);
 
 			this.nextClientID = Integer.parseInt(ids.getProperty("next_client_id"));
 			this.nextEstimateID = Integer.parseInt(ids.getProperty("next_estimate_id"));
@@ -121,7 +121,7 @@ public class DataManagement {
 			prop.put("next_estimate_id", String.valueOf(nextEstimateID));
 
 			try {
-				FileManagement.instance().saveProperties(FileNameResolver.NEXT_ID, prop);
+				FileManagement.instance().saveProperties(FileResolver.NEXT_ID, prop);
 			} catch (IOException e) {
 				LogService.error(this.getClass(), "Cannot save next_id file", true, e);
 			}

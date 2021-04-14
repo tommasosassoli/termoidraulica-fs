@@ -25,7 +25,7 @@ public class CompanyDataManagement {
 		}
 	}
 
-	public void commitDatiAzienda() {
+	public void commitCompanyData() {
 		LogService.trace(CompanyDataManagement.class, "Committing company data");
 
 		try {
@@ -38,7 +38,7 @@ public class CompanyDataManagement {
 	public void refreshData() {
 		LogService.trace(CompanyDataManagement.class, "Refreshing company data");
 
-		commitDatiAzienda();
+		commitCompanyData();
 		loadFile();
 	}
 

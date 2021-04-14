@@ -31,7 +31,7 @@ public class Item {
 
 	@JsonIgnore
 	public String getDescription() {
-		return description;
+		return (description != null) ? description : "";
 	}
 
 	public void setDescription(String description) {
@@ -40,7 +40,7 @@ public class Item {
 
 	@JsonIgnore
 	public String getUm() {
-		return um;
+		return (um != null) ? um : "";
 	}
 
 	public void setUm(String um) {
@@ -96,4 +96,8 @@ public class Item {
 		return taxable - priceDiscount;	//discounted price
 	}
 
+	@JsonIgnore
+	public boolean isEmpty() {
+		return (getDescription().isEmpty() && getUm().isEmpty() && getQt() == 0 && getPrice() == 0);
+	}
 }

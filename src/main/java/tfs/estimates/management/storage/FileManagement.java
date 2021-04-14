@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import tfs.estimates.model.serialization.AbstractSerialization;
 import tfs.estimates.service.LogService;
-import tfs.estimates.util.FileNameResolver;
+import tfs.estimates.resolvers.FileResolver;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -23,7 +23,7 @@ public class FileManagement {//TODO make test
 		return instance;
 	}
 
-	public <T> T loadXmlFile(FileNameResolver fileName, Class<T> t)	throws IOException {
+	public <T> T loadXmlFile(FileResolver fileName, Class<T> t)	throws IOException {
 		LogService.trace(FileManagement.class, "Reading xml file: " + fileName);
 
 		InputStream in = getClass().getResourceAsStream(fileName + ".xml");
@@ -32,7 +32,7 @@ public class FileManagement {//TODO make test
 		return mapper.readValue(in, t);
 	}
 
-	public <T> void saveXmlFile(FileNameResolver fileName, AbstractSerialization<T> serializedObject)
+	public <T> void saveXmlFile(FileResolver fileName, AbstractSerialization<T> serializedObject)
 			throws IOException {
 		LogService.trace(FileManagement.class, "Writing xml file: " + fileName);
 
@@ -53,7 +53,7 @@ public class FileManagement {//TODO make test
 		mapper.writeValue(fout, serializedObject);
 	}
 
-	public Properties loadProperties(FileNameResolver filename) throws IOException {
+	public Properties loadProperties(FileResolver filename) throws IOException {
 		LogService.trace(FileManagement.class, "Reading properties file: " + filename);
 
 		Properties prop = new Properties();
@@ -62,7 +62,7 @@ public class FileManagement {//TODO make test
 		return prop;
 	}
 
-	public void saveProperties(FileNameResolver filename, Properties prop) throws IOException {
+	public void saveProperties(FileResolver filename, Properties prop) throws IOException {
 		LogService.trace(FileManagement.class, "Writing properties file: " + filename);
 
 		if (!filename.isEditable())
