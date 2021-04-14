@@ -6,11 +6,9 @@ import tfs.estimates.model.Client;
 import tfs.estimates.model.CompanyData;
 import tfs.estimates.model.Estimate;
 import tfs.estimates.model.TaxRate;
-import tfs.estimates.util.FileNameResolver;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 

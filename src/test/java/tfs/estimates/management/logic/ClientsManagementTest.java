@@ -33,18 +33,6 @@ class ClientsManagementTest {
     }
 
     @Test
-    void updateClient() {
-        Client newClient = new Client();
-        newClient.setName("updatedClient");
-
-        instance.updateClient(id, newClient);
-
-        Client updateClient = instance.getClient(id);
-        if (!"updatedClient".equals(updateClient.getName()))
-            fail();
-    }
-
-    @Test
     void deleteClient() {
         Client c = instance.getClient(id);
         assertNotNull(c);

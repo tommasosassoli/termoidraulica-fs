@@ -1,17 +1,18 @@
 package tfs.estimates.util;
 
 import org.junit.jupiter.api.Test;
+import tfs.estimates.resolvers.FileResolver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileNameResolverTest {
+class FileResolverTest {
 
     @Test
     void fileNameTest() {
         String expected = "/files/store/clients";
-        if (!expected.equals(FileNameResolver.CLIENTS.toString()))
+        if (!expected.equals(FileResolver.CLIENTS.toString()))
             fail();
-        if (!"xml".equals(FileNameResolver.CLIENTS.extension()))
+        if (!"xml".equals(FileResolver.CLIENTS.extension()))
             fail();
     }
 }

@@ -35,17 +35,6 @@ class EstimatesManagementTest {
     }
 
     @Test
-    void updateEstimate() {
-        Estimate newEstimate = new Estimate();
-        newEstimate.setDeposit(100);
-
-        instance.updateEstimate(id, newEstimate);
-
-        Estimate updateEstimate = instance.getEstimate(id);
-        assertEquals(100, updateEstimate.getDeposit());
-    }
-
-    @Test
     void deleteEstimate() {
         Estimate d = instance.deleteEstimate(id);
         assertNotNull(d);
