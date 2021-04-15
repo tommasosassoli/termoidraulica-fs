@@ -21,7 +21,7 @@ public class ItemGroup {
 
     @JsonIgnore
     public String getDescription() {
-        return description;
+        return (description != null) ? description : "";
     }
 
     @JsonProperty("subtotal_description")
@@ -59,6 +59,6 @@ public class ItemGroup {
 
     @JsonIgnore
     public boolean isEmpty() {
-        return items.isEmpty();
+        return items.isEmpty() && getDescription().isEmpty();
     }
 }
