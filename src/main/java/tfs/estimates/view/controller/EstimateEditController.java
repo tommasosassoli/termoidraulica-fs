@@ -1,34 +1,33 @@
 package tfs.estimates.view.controller;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.util.converter.DoubleStringConverter;
+import tfs.estimates.management.logic.ClientsManagement;
+import tfs.estimates.management.logic.EstimatesManagement;
+import tfs.estimates.model.*;
+import tfs.estimates.resolvers.FileResolver;
+import tfs.estimates.resolvers.ViewResolver;
+import tfs.estimates.service.AutoSaveService;
+import tfs.estimates.service.LogService;
+import tfs.estimates.view.ViewManager;
+import tfs.estimates.view.tasks.PrintTask;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import tfs.estimates.management.logic.ClientsManagement;
-import tfs.estimates.management.logic.EstimatesManagement;
-import tfs.estimates.model.*;
-import tfs.estimates.print.FattureFactory;
-import tfs.estimates.resolvers.ViewResolver;
-import tfs.estimates.service.AutoSaveService;
-import tfs.estimates.resolvers.FileResolver;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Text;
-import javafx.util.converter.DoubleStringConverter;
-import tfs.estimates.service.LogService;
-import tfs.estimates.view.ViewManager;
 
 public class EstimateEditController extends AbstractController {
 	private String estimateID;
@@ -40,6 +39,8 @@ public class EstimateEditController extends AbstractController {
 
 	NumberFormat numberFormat = DecimalFormat.getCurrencyInstance();
 
+	@FXML
+	private AnchorPane progressIndicatorLayer;
 	@FXML
 	private ComboBox<Client> clientsBar = new ComboBox<>();
 	@FXML
@@ -258,9 +259,9 @@ public class EstimateEditController extends AbstractController {
 	}
 
 	@FXML
-	private void estimatePrint() {//TODO aggiungi una rotella di caricamento ;-)
-		if (!itemsTable.getItems().isEmpty())
-				FattureFactory.printReportFattura(estimateID);
+	private void estimatePrint() {
+		if (!itemGroupTable.getItems().isEmpty())
+			print(FileResolver.REPORT_ESTIMATE);
 		else
 			ViewManager.launchInfoDialog("Non sono cotenuti elementi nella tabella");
 	}
@@ -268,7 +269,7 @@ public class EstimateEditController extends AbstractController {
 	@FXML
 	private void estimatePrintB() {
 		if (!itemGroupTable.getItems().isEmpty())
-				FattureFactory.printReportFattura(estimateID, FileResolver.REPORT_ESTIMATE_B);
+			print(FileResolver.REPORT_ESTIMATE_B);
 		else
 			ViewManager.launchInfoDialog("Non sono cotenuti elementi nella tabella");
 	}
@@ -425,6 +426,16 @@ public class EstimateEditController extends AbstractController {
 	private void launchEditItemPopup(Item item) {
 		getViewManager().launchNewWindow(ViewResolver.ITEM_EDIT, "Modifica Riga Preventivo",
 				true, false, item);
+	}
+
+	private void print(FileResolver fileName) {
+		progressIndicatorLayer.setVisible(true);
+
+		PrintTask task = new PrintTask(estimateID, fileName);
+		task.setOnSucceeded(e -> progressIndicatorLayer.setVisible(false));
+		task.setOnFailed(e -> progressIndicatorLayer.setVisible(false));
+
+		new Thread(task).start();
 	}
 
 	private void notifyChanges() {
