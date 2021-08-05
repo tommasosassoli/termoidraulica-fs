@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final utlizzo versione della libreria JasperReports6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Materiali" pageWidth="538" pageHeight="842" columnWidth="538" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="85c18d31-e791-44b1-bd87-dfacdce8c75f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<subDataset name="Dataset1" uuid="38dda55b-c21e-4242-b955-998ef1469bba">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="description" class="java.lang.String"/>
+	<field name="items" class="java.util.List"/>
+	<field name="itemGroupSubtotal" class="java.lang.Double"/>
+	<columnHeader>
+		<band height="29">
+			<staticText>
+				<reportElement x="60" y="5" width="100" height="16" uuid="1b39a131-4136-443b-9d7c-1639385200cf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e0247612-4115-474c-8c4b-57de0cb916b3"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIZIONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="5" width="20" height="16" uuid="f6169197-ba4c-4fe9-a291-7a953689c51d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1874a71-72bc-4cc8-b5f6-9bb98f169868"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="5" width="38" height="16" uuid="4ea9f928-b298-4fe6-84dd-5106f049c0c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d63b71c7-9337-49e9-93c0-b51d52984361"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="5" width="70" height="16" uuid="db4481f8-d7e0-4021-8932-08d2ea09f34f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c1bb1c83-ea84-4fba-833a-08215f3ed72d"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P. UNITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="5" width="70" height="16" uuid="b52baf9a-cb5a-4239-af0e-703a0e318ccc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREZZO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="5" width="40" height="16" uuid="130c4d8a-a7b5-4b2f-94a5-4b8b590cd5d7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4681503e-28d1-46fe-b851-666e25b7058f"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="538" height="1" forecolor="#3333FF" uuid="9eb33d8a-5b3c-40f5-a7a1-83410bf586c7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22">
+			<property name="com.jaspersoft.studio.layout"/>
+			<textField>
+				<reportElement x="10" y="2" width="330" height="20" uuid="b6772438-ae2e-45f6-9bdb-73c4e14c9db4"/>
+				<textElement markup="styled"/>
+				<textFieldExpression><![CDATA["<style isItalic='true'>" + $F{description} + "</style>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="2" width="70" height="20" uuid="b6772438-ae2e-45f6-9bdb-73c4e14c9db4"/>
+				<textElement markup="styled" textAlignment="Right"/>
+				<textFieldExpression><![CDATA["<style isItalic='true'>" + new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{itemGroupSubtotal}) + "</style>"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<subreport overflowType="Stretch">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="2" width="540" height="17" isRemoveLineWhenBlank="true" uuid="08f1b604-4d6d-4efb-aeaa-c639c470a3e9"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{items})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/Items.jrxml"))]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="7">
+			<line>
+				<reportElement x="1" y="0" width="538" height="1" forecolor="#cfcfcf" uuid="50d1d2a2-e591-49da-b0d4-4903a95578bd"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

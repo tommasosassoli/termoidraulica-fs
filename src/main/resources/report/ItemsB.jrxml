@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final utlizzo versione della libreria JasperReports6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Materiali" pageWidth="538" pageHeight="842" columnWidth="538" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="85c18d31-e791-44b1-bd87-dfacdce8c75f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<subDataset name="Dataset1" uuid="38dda55b-c21e-4242-b955-998ef1469bba">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="description" class="java.lang.String"/>
+	<field name="um" class="java.lang.String"/>
+	<field name="qt" class="java.lang.Double"/>
+	<field name="price" class="java.lang.Double"/>
+	<field name="itemSubtotal" class="java.lang.Double"/>
+	<detail>
+		<band height="17">
+			<property name="com.jaspersoft.studio.layout"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="10" y="2" width="280" height="15" isPrintWhenDetailOverflows="true" uuid="4bbd1c67-100e-44a1-a571-b36e13ccfc3c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e0247612-4115-474c-8c4b-57de0cb916b3"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="300" y="2" width="20" height="15" uuid="0b55bed5-21a5-45d5-a5d2-ba2e88ace8d3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1874a71-72bc-4cc8-b5f6-9bb98f169868"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{um}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="320" y="2" width="38" height="15" uuid="23c679b2-be92-4e6f-bb8f-cd1d01d8b00f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d63b71c7-9337-49e9-93c0-b51d52984361"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{qt} > 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#0").format($F{qt})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="360" y="2" width="70" height="15" uuid="7a588af6-12fa-4fa0-99fa-f1ea98c28759">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c1bb1c83-ea84-4fba-833a-08215f3ed72d"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{price} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{price})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="430" y="2" width="70" height="15" uuid="870c7555-d20b-486b-b5fc-eb5d0568fecd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{qt} > 0 && $F{price} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{itemSubtotal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

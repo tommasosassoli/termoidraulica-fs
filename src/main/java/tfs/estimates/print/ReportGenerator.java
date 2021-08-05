@@ -4,7 +4,6 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 import tfs.estimates.management.logic.CompanyDataManagement;
-import tfs.estimates.management.logic.EstimatesManagement;
 import tfs.estimates.model.Estimate;
 import tfs.estimates.resolvers.FileResolver;
 import tfs.estimates.service.LogService;
@@ -15,12 +14,12 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class ReportGenerator {
-	private String estimateId;
-	private FileResolver fileName;
+	private final Estimate estimate;
+	private final FileResolver fileName;
 	private boolean printSuccess = false;
 
-	public ReportGenerator(String id, FileResolver fileName) {
-		this.estimateId = id;
+	public ReportGenerator(Estimate estimate, FileResolver fileName) {
+		this.estimate = estimate;
 		this.fileName = fileName;
 	}
 
@@ -41,10 +40,9 @@ public class ReportGenerator {
 		try {
 			LogService.info(ReportGenerator.class, "Printing...");
 
-			if (estimateId == null || estimateId.isEmpty() || fileName == null)
+			if (estimate == null || fileName == null)
 				throw new NullPointerException();
 
-			Estimate estimate = EstimatesManagement.instance().getEstimate(estimateId);
 			Collection<Estimate> estimateCol = new ArrayList<>();
 			estimateCol.add(estimate);
 			JRBeanCollectionDataSource mainData = new JRBeanCollectionDataSource(estimateCol);
@@ -65,7 +63,7 @@ public class ReportGenerator {
 
 			printSuccess = true;
 		} catch (JRException | NullPointerException e) {
-			LogService.error(ReportGenerator.class, "Error during fattura print with id: " + estimateId, true, e);
+			LogService.error(ReportGenerator.class, "Error during estimate print", true, e);
 		}
 	}
 

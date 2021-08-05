@@ -431,7 +431,7 @@ public class EstimateEditController extends AbstractController {
 	private void print(FileResolver fileName) {
 		progressIndicatorLayer.setVisible(true);
 
-		PrintTask task = new PrintTask(estimateID, fileName);
+		PrintTask task = new PrintTask(getEstimate(), fileName);
 		task.setOnSucceeded(e -> progressIndicatorLayer.setVisible(false));
 		task.setOnFailed(e -> progressIndicatorLayer.setVisible(false));
 

@@ -8,8 +8,8 @@ public enum FileResolver {
 	COMPANY_DATA(		"files/config",	"company_data",	"properties",	true,	1),
 	NEXT_ID (			"files/encodings", "next_id", 		"properties", 	true,	1),
 	TAX_RATES(			"files/encodings",	"tax_rates",		"xml",			false,	1),
-	REPORT_ESTIMATE(	"report",			"Fattura",		"jrxml",		false,	2),
-	REPORT_ESTIMATE_B(	"report",			"FatturaB",		"jrxml",		false,	2);
+	REPORT_ESTIMATE(	"report",			"Estimate",		"jrxml",		false,	2),
+	REPORT_ESTIMATE_B(	"report",			"EstimateB",		"jrxml",		false,	2);
 	
 	private final String path;
 	private final String name;
