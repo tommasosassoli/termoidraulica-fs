@@ -112,6 +112,24 @@
                      <children>
                         <HBox alignment="BOTTOM_RIGHT" maxHeight="40.0" prefHeight="35.0" prefWidth="333.0">
                            <children>
+                                 <Button mnemonicParsing="false" onAction="#swapItemGroupDown" prefHeight="31.0" prefWidth="38.0">
+                                    <graphic>
+                                       <ImageView fx:id="removeMaterialeImg21" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@icons/arrow-down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button mnemonicParsing="false" onAction="#swapItemGroupUp" prefHeight="31.0" prefWidth="38.0">
+                                    <graphic>
+                                       <ImageView fx:id="removeMaterialeImg31" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@icons/arrow-up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
                               <Button mnemonicParsing="false" onAction="#removeItemGroup" prefHeight="31.0" prefWidth="38.0">
                                  <graphic>
                                     <ImageView fx:id="removeMaterialeImg1" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
@@ -147,6 +165,33 @@
                      <children>
                         <HBox alignment="BOTTOM_RIGHT" maxHeight="40.0" prefHeight="30.0" prefWidth="861.0">
                            <children>
+                                 <Button mnemonicParsing="false" onAction="#crossItem" prefHeight="31.0" prefWidth="38.0">
+                                    <graphic>
+                                       <ImageView fx:id="removeMaterialeImg22" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@icons/swap.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button mnemonicParsing="false" onAction="#swapItemDown" prefHeight="31.0" prefWidth="38.0">
+                                    <graphic>
+                                       <ImageView fx:id="removeMaterialeImg2" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@icons/arrow-down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button mnemonicParsing="false" onAction="#swapItemUp" prefHeight="31.0" prefWidth="38.0">
+                                    <graphic>
+                                       <ImageView fx:id="removeMaterialeImg3" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@icons/arrow-up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
                               <Button mnemonicParsing="false" onAction="#removeItem" prefHeight="31.0" prefWidth="38.0">
                                  <graphic>
                                     <ImageView fx:id="removeMaterialeImg" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">

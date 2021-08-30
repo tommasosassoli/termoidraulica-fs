@@ -61,4 +61,9 @@ public class ItemGroup {
     public boolean isEmpty() {
         return items.isEmpty() && getDescription().isEmpty();
     }
+
+    @JsonIgnore
+    public String toString() {
+        return getDescription();
+    }
 }

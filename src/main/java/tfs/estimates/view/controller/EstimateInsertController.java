@@ -56,7 +56,7 @@ public class EstimateInsertController extends AbstractController {
 
 	@FXML
 	private void applyFilter() {
-		clientsBarFilter(ViewManager.launchInputDialog("Nome cliente: "));
+		clientsBarFilter(ViewManager.launchTextInputDialog("Nome cliente: "));
 		removeFilter.setVisible(true);
 	}
 

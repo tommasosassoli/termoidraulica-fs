@@ -3,11 +3,8 @@ package tfs.estimates.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -21,6 +18,7 @@ import tfs.estimates.view.controller.MenuBarController;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 public class ViewManager {
@@ -132,13 +130,26 @@ public class ViewManager {
 	}
 	
 
-	public static String launchInputDialog(String str) {
+	public static String launchTextInputDialog(String str) {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle(CompanyDataManagement.instance().getCompanyData().getCompanyName());
 		dialog.setHeaderText(null);
 		dialog.setContentText(str);
 
 		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent())
+			return result.get();
+		else
+			return null;
+	}
+
+	public static <T> T launchListInputDialog(String str, List<T> list, T defaultChoice) {
+		ChoiceDialog<T> dialog = new ChoiceDialog<>(defaultChoice, list);
+		dialog.setTitle(CompanyDataManagement.instance().getCompanyData().getCompanyName());
+		dialog.setHeaderText(null);
+		dialog.setContentText(str);
+
+		Optional<T> result = dialog.showAndWait();
 		if (result.isPresent())
 			return result.get();
 		else

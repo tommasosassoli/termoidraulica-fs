@@ -3,12 +3,12 @@ package tfs.estimates.view.controller;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.DoubleStringConverter;
@@ -311,6 +311,16 @@ public class EstimateEditController extends AbstractController {
 	}
 
 	@FXML
+	private void swapItemGroupUp() {
+		swapItemGroup(true);
+	}
+
+	@FXML
+	private void swapItemGroupDown() {
+		swapItemGroup(false);
+	}
+
+	@FXML
 	private void addItem() {
 		if (!itemsTable.isDisable()) {
 			Item newItem = new Item();
@@ -353,6 +363,34 @@ public class EstimateEditController extends AbstractController {
 				notifyChanges();
 			}
 		}
+	}
+
+	@FXML
+	private void swapItemUp() {
+		swapItem(true);
+	}
+
+	@FXML
+	private void swapItemDown() {
+		swapItem(false);
+	}
+
+	@FXML
+	private void crossItem() {
+		ItemGroup from = itemGroupTable.getSelectionModel().getSelectedItem();
+		Item item = itemsTable.getSelectionModel().getSelectedItem();
+
+		ItemGroup to = ViewManager.launchListInputDialog("Seleziona un subtotale",
+				itemGroupTable.getItems().stream().toList(), from);
+
+		if (to != null && to != from) {
+			from.removeItem(item);
+			to.addItem(item);
+		}
+
+		itemsTable.refresh();
+		itemGroupTable.refresh();
+		notifyChanges();
 	}
 
 	@FXML
@@ -414,6 +452,28 @@ public class EstimateEditController extends AbstractController {
 		itemsTable.getItems().add(dropIndex, draggedItem);
 		itemsTable.getSelectionModel().select(dropIndex);
 		itemsTable.scrollTo(dropIndex);
+
+		notifyChanges();
+	}
+
+	private void swapItemGroup(boolean up) {
+		int draggedIndex = itemGroupTable.getSelectionModel().getSelectedIndex();
+		ItemGroup draggedItem = itemGroupTable.getItems().remove(draggedIndex);
+
+		int dropIndex;
+		if (up)
+			dropIndex = draggedIndex - 1;
+		else
+			dropIndex = draggedIndex + 1;
+
+		if (dropIndex < 0)
+			dropIndex = 0;
+		else if (dropIndex > itemGroupTable.getItems().size())
+			dropIndex = itemGroupTable.getItems().size();
+
+		itemGroupTable.getItems().add(dropIndex, draggedItem);
+		itemGroupTable.getSelectionModel().select(dropIndex);
+		itemGroupTable.scrollTo(dropIndex);
 
 		notifyChanges();
 	}
