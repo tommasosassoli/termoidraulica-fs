@@ -1,0 +1,22 @@
+<receipts_list>
+    <receipts>
+        <foreign_id>00</foreign_id>
+        <description>termomarket</description>
+        <date>17/09/2021-00:00:00</date>
+        <tax>
+            <tax_value>22.0</tax_value>
+            <tax_description>Ordinaria</tax_description>
+        </tax>
+        <riba_list/>
+    </receipts>
+    <receipts>
+        <foreign_id>aa</foreign_id>
+        <description>palagini</description>
+        <date>02/10/2021-00:00:00</date>
+        <tax>
+            <tax_value>22.0</tax_value>
+            <tax_description>Ordinaria</tax_description>
+        </tax>
+        <riba_list/>
+    </receipts>
+</receipts_list>

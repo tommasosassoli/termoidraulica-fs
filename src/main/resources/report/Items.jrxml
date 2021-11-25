@@ -23,7 +23,7 @@
 	<field name="qt" class="java.lang.Double"/>
 	<field name="price" class="java.lang.Double"/>
 	<field name="itemSubtotal" class="java.lang.Double"/>
-	<field name="taxRate" class="tfs.estimates.model.TaxRate"/>
+	<field name="taxRate" class="tfs.modules.common.model.TaxRate"/>
 	<detail>
 		<band height="17">
 			<property name="com.jaspersoft.studio.layout"/>

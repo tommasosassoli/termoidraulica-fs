@@ -15,7 +15,7 @@
 		<![CDATA[]]>
 	</queryString>
 	<field name="id" class="java.lang.String"/>
-	<field name="client" class="tfs.estimates.model.Client"/>
+	<field name="client" class="tfs.modules.estimates.model.Client"/>
 	<field name="insertDate" class="java.time.LocalDateTime"/>
 	<field name="formatExpiringDate" class="java.lang.String"/>
 	<field name="formatInsertDate" class="java.lang.String"/>
