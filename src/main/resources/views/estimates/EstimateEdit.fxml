@@ -89,7 +89,7 @@
                      </children>
                   </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENTE" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="clientsBar" maxWidth="400.0" onAction="#changeClient" prefHeight="31.0" prefWidth="450.0" promptText="Seleziona un cliente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="clientsBar" maxWidth="400.0" onAction="#changeCustomer" prefHeight="31.0" prefWidth="450.0" promptText="Seleziona un cliente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATA di RIFERIMENTO" GridPane.rowIndex="2" />
                   <DatePicker fx:id="estimateDate" onAction="#changeDate" prefHeight="31.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 <!--                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">

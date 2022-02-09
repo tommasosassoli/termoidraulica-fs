@@ -4,7 +4,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="taxRate" class="tfs.modules.common.model.TaxRate"/>
+	<field name="taxRate" class="tfs.business.model.tax.TaxRate"/>
 	<field name="taxable" class="java.lang.Double"/>
 	<field name="tax" class="java.lang.Double"/>
 	<columnHeader>

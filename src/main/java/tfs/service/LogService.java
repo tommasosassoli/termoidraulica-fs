@@ -3,7 +3,7 @@ package tfs.service;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import tfs.view.ViewManager;
+import tfs.gui.view.ViewManager;
 
 /**
  * Wrapper Class for Log4j2 plugin

@@ -33,7 +33,7 @@
 	<field name="subtotale" class="java.lang.Double">
 		<fieldDescription><![CDATA[subtotale]]></fieldDescription>
 	</field>
-	<field name="aliquotaIva" class="tfs.modules.common.model.TaxRate">
+	<field name="aliquotaIva" class="tfs.business.model.tax.TaxRate">
 		<fieldDescription><![CDATA[aliquotaIva]]></fieldDescription>
 	</field>
 	<columnHeader>
