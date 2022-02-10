@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class RDBConnection {
     private static RDBConnection rdbConnection;
-    private Properties connectionProp;
+    private String connectionString;
 
     private RDBConnection() {
     }
@@ -25,13 +25,14 @@ public class RDBConnection {
 
     public Connection getConnection() {
         try {
-            if (connectionProp == null)
-                connectionProp = loadPropertiesFile(FileResolver.DATABASE);
+            if (connectionString == null) {
+                Properties connectionProp = loadPropertiesFile(FileResolver.DATABASE);
+                connectionString = buildConnectionString(connectionProp);
+                LogService.info(RDBConnection.class, "Connection to database initialized");
+            }
 
-            String url = buildConnectionString(connectionProp);
-
-            Connection conn = DriverManager.getConnection(url);
-            LogService.info(RDBConnection.class, "Connection to database established");
+            Connection conn = DriverManager.getConnection(connectionString);
+            LogService.trace(RDBConnection.class, "Connection to database established");
             return conn;
 
         } catch (IOException | IllegalArgumentException e) {

@@ -8,6 +8,7 @@ import tfs.business.dao.daointerface.EstimateDao;
 import tfs.business.model.estimate.Item;
 import tfs.business.model.estimate.ItemGroup;
 import tfs.business.model.tax.TaxRate;
+import tfs.service.LogService;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class RDBEstimateDao implements EstimateDao {
             try {
                 return insertEstimateWithItemGroupsAndItem(conn, e);
             } catch (SQLException g) {
-                g.printStackTrace();
+                LogService.error(this.getClass(), "Error during estimate insertion", true, g);
             }
         }
         return false;
@@ -55,7 +56,7 @@ public class RDBEstimateDao implements EstimateDao {
                 return list;
 
             } catch (SQLException g) {
-                g.printStackTrace();
+                LogService.error(this.getClass(), "Error during estimate list select", true, g);
             }
         }
         return null;
@@ -86,7 +87,7 @@ public class RDBEstimateDao implements EstimateDao {
                 e.overrideItemGroups(resolveItemGroupsAndItem(conn, id));
                 return e;
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during estimate select", true, e);
             }
         }
         return null;
@@ -106,7 +107,7 @@ public class RDBEstimateDao implements EstimateDao {
                     } else
                         conn.rollback();
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    LogService.error(this.getClass(), "Error during estimate update", true, ex);
                 }
             }
         }
@@ -122,7 +123,7 @@ public class RDBEstimateDao implements EstimateDao {
                 try {
                     return delete(conn, Integer.parseInt(id)) ? e : null;
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    LogService.error(this.getClass(), "Error during estimate delete", true, ex);
                 }
             }
         }
@@ -225,50 +226,6 @@ public class RDBEstimateDao implements EstimateDao {
             }
         }
 
- /*       // Item Group
-        String sqlIg = "INSERT INTO ItemGroup (estimateId, description) VALUES (?,?) RETURNING itemGroupId;";
-        HashMap<Integer, ItemGroup> igIds = new HashMap<>();
-
-        for (ItemGroup ig : e.getItemGroups()) {
-            PreparedStatement stmIg = conn.prepareStatement(sqlIg);
-            stmIg.setInt(1, estimateId);
-            stmIg.setString(2, ig.getDescription());
-            stmIg.execute();
-            ResultSet rs = stmIg.getResultSet();
-            if (!rs.next()) {
-                conn.rollback();
-                throw new SQLException("Rollback: Cannot insert itemGroup in ItemGroup table correctly");
-            }
-            igIds.put(rs.getInt(1), ig);
-        }
-
-        // Item
-        boolean firstI = true;
-        int iter = 0;
-        String sqlI = "INSERT INTO Item (itemGroupId, estimateId, description, um, qt, price, discount, taxRate) VALUES ";
-
-        for (Integer igId : igIds.keySet()) {
-            ItemGroup ig = igIds.get(igId);
-
-            for (Item i : ig.getItems()) {
-                iter++;
-                sqlI += (firstI ? "(" : ", (");
-                firstI = false;
-                sqlI += igId + "," + estimateId + ",'" + i.getDescription() + "','" + i.getUm() + "'," + i.getQt() +
-                        "," + i.getPrice() + "," + i.getDiscount() + "," + i.getTaxRate().getTaxRateValue() + ") ";
-            }
-        }
-
-        if (iter > 0) {
-            PreparedStatement stmI = conn.prepareStatement(sqlI);
-            int okI = stmI.executeUpdate();
-
-            if (okI == 0) {
-                conn.rollback();
-                throw new SQLException("Rollback: Cannot insert Item in Item table correctly");
-            }
-        }
-*/
         // Transaction End
         conn.commit();
         return true;

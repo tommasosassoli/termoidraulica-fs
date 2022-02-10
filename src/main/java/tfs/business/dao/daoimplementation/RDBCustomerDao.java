@@ -3,6 +3,7 @@ package tfs.business.dao.daoimplementation;
 import tfs.business.data.RDBConnection;
 import tfs.business.model.customer.Customer;
 import tfs.business.dao.daointerface.CustomerDao;
+import tfs.service.LogService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class RDBCustomerDao implements CustomerDao {
                 return true;
 
             } catch (SQLException e) {
+                LogService.error(this.getClass(), "Error during customer insert", true, e);
                 e.printStackTrace();
             }
         }
@@ -51,7 +53,7 @@ public class RDBCustomerDao implements CustomerDao {
                 return list;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during customer list select", true, e);
             }
         }
         return null;
@@ -85,7 +87,7 @@ public class RDBCustomerDao implements CustomerDao {
                 return c;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during customer select", true, e);
             }
         }
         return null;
@@ -106,7 +108,7 @@ public class RDBCustomerDao implements CustomerDao {
                 return true;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during customer update", true, e);
             }
         }
         return false;
@@ -129,7 +131,7 @@ public class RDBCustomerDao implements CustomerDao {
 
                 return c;
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during customer delete", true, e);
             }
         }
         return null;

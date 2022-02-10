@@ -7,6 +7,7 @@ import tfs.business.model.receipt.Receipt;
 import tfs.business.dao.daointerface.ReceiptDao;
 import tfs.business.model.receipt.Riba;
 import tfs.business.model.tax.TaxRate;
+import tfs.service.LogService;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -21,7 +22,7 @@ public class RDBReceiptDao implements ReceiptDao {
             try {
                 return insertReceiptWithRiba(conn, r);
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during receipt insert", true, e);
             }
         }
         return false;
@@ -46,7 +47,7 @@ public class RDBReceiptDao implements ReceiptDao {
                 return list;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during receipt list select", true, e);
             }
         }
         return null;
@@ -78,7 +79,7 @@ public class RDBReceiptDao implements ReceiptDao {
                 return r;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during receipt select", true, e);
             }
         }
         return null;
@@ -96,7 +97,7 @@ public class RDBReceiptDao implements ReceiptDao {
                         return insertReceiptWithRiba(conn, r);
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    LogService.error(this.getClass(), "Error during receipt update", true, ex);
                 }
             }
         }
@@ -112,7 +113,7 @@ public class RDBReceiptDao implements ReceiptDao {
                 try {
                     return delete(conn, Integer.parseInt(id)) ? r : null;
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    LogService.error(this.getClass(), "Error during receipt delete", true, ex);
                 }
             }
         }

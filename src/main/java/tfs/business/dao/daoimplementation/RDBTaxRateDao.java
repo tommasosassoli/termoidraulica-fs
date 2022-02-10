@@ -3,6 +3,7 @@ package tfs.business.dao.daoimplementation;
 import tfs.business.data.RDBConnection;
 import tfs.business.model.tax.TaxRate;
 import tfs.business.dao.daointerface.TaxRateDao;
+import tfs.service.LogService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class RDBTaxRateDao implements TaxRateDao {
                 return list;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during tax rate list select", true, e);
             }
         }
         return null;
@@ -50,7 +51,7 @@ public class RDBTaxRateDao implements TaxRateDao {
                 return r;
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogService.error(this.getClass(), "Error during tax rate select", true, e);
             }
         }
         return null;
