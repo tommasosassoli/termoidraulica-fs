@@ -32,8 +32,12 @@ public class LogService {
 		Logger log = LogManager.getLogger(classToLog.getName());
 		log.error(msg, thrown);
 
-		if (reportToUser)
-			ViewManager.launchErrorDialog(msg);
+		try {
+			if (reportToUser)
+				ViewManager.launchErrorDialog(msg);
+		} catch (ExceptionInInitializerError e) {
+			System.err.println("Cannot open error dialog, maybe you are in test mode...");
+		}
 	}
 
 	public static <T> void warning(Class<T> classToLog, String msg) {
@@ -48,8 +52,12 @@ public class LogService {
 		Logger log = LogManager.getLogger(classToLog.getName());
 		log.warn(msg, thrown);
 
-		if (reportToUser)
-			ViewManager.launchWarningDialog(msg);
+		try {
+			if (reportToUser)
+				ViewManager.launchWarningDialog(msg);
+		} catch (ExceptionInInitializerError e) {
+			System.err.println("Cannot open warning dialog, maybe you are in test mode...");
+		}
 	}
 
 	public static void info(Class<?> classToLog, String msg) {
@@ -60,8 +68,12 @@ public class LogService {
 		Logger log = LogManager.getLogger(classToLog.getName());
 		log.info(msg);
 
-		if (reportToUser)
-			ViewManager.launchInfoDialog(msg);
+		try {
+			if (reportToUser)
+				ViewManager.launchInfoDialog(msg);
+		} catch (ExceptionInInitializerError e) {
+			System.err.println("Cannot open info dialog, maybe you are in test mode...");
+		}
 	}
 
 	public static void debug(Class<?> classToLog, String msg) {

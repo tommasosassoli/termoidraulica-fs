@@ -26,7 +26,6 @@ public class RDBCustomerDao implements CustomerDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer insert", true, e);
-                e.printStackTrace();
             }
         }
         return false;

@@ -152,7 +152,7 @@ public class RDBReceiptDao implements ReceiptDao {
 
         } else {
             sqlR = "INSERT INTO Receipt (id, foreignId, description, date, taxRate) " +
-                    "VALUES (?,?,?,?,?);";
+                    "VALUES (?,?,?,?,?)  RETURNING id;";
 
             stmR = conn.prepareStatement(sqlR);
             stmR.setInt(1, Integer.parseInt(r.getId()));

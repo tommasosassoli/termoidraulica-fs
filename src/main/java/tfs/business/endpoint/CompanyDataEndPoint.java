@@ -8,7 +8,7 @@ public class CompanyDataEndPoint {
         return CompanyDataDaoFactory.getDao().getCompanyData();
     }
 
-    public void updateCompanyData(CompanyData cd) {
-        CompanyDataDaoFactory.getDao().updateCompanyData(cd);
+    public boolean updateCompanyData(CompanyData cd) {
+        return CompanyDataDaoFactory.getDao().updateCompanyData(cd);
     }
 }
