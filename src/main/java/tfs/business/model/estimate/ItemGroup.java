@@ -5,10 +5,14 @@ import java.util.List;
 
 public class ItemGroup {
     private String description;
-    private List<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     public ItemGroup() {
+    }
 
+    public ItemGroup(ItemGroup g) {
+        this.description = g.description;
+        this.items.addAll(g.getItems());
     }
 
     public String getDescription() {
@@ -20,15 +24,14 @@ public class ItemGroup {
     }
 
     public List<Item> getItems() {
-        return items;
+        ArrayList<Item> l = new ArrayList<>();
+        for (Item i : items)
+            l.add(new Item(i));
+        return l;
     }
 
     public void addItem(Item e) {
-        items.add(e);
-    }
-
-    public void addItem(List<Item> l) {
-        items.addAll(l);
+        items.add(new Item(e));
     }
 
     public boolean removeItem(Item e) {

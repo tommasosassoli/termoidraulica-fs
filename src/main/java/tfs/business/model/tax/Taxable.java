@@ -6,7 +6,7 @@ public class Taxable {
 	
 	public Taxable(double taxable, TaxRate taxRate) {
 		this.taxable = taxable;
-		this.taxRate = taxRate;
+		this.taxRate = new TaxRate(taxRate);
 	}
 
 	public double getTaxable() {
@@ -20,7 +20,7 @@ public class Taxable {
 	}
 
 	public TaxRate getTaxRate() {
-		return taxRate;
+		return new TaxRate(taxRate);
 	}
 	
 	public double getTax() {

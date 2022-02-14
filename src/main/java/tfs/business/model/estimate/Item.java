@@ -17,6 +17,15 @@ public class Item {
 		this.discount = 0;
 	}
 
+	public Item(Item i) {
+		this.description = i.description;
+		this.um = i.um;
+		this.qt = i.qt;
+		this.price = i.price;
+		this.taxRate = i.getTaxRate();
+		this.discount = i.discount;
+	}
+
 	public String getDescription() {
 		return (description != null) ? description : "";
 	}
@@ -54,11 +63,11 @@ public class Item {
 	}
 
 	public TaxRate getTaxRate() {
-		return taxRate;
+		return new TaxRate(taxRate);
 	}
 
 	public void setTaxRate(TaxRate taxRate) {
-		this.taxRate = taxRate;
+		this.taxRate = new TaxRate(taxRate);
 	}
 
 	public double getDiscount() {

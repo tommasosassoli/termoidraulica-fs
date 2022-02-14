@@ -14,6 +14,12 @@ public class Riba {
         paid = false;
     }
 
+    public Riba(Riba r) {
+        this.amount = r.amount;
+        this.expireDate = r.expireDate;
+        this.paid = r.paid;
+    }
+
     public double getAmount() {
         return amount;
     }

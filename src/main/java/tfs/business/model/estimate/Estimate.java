@@ -21,19 +21,20 @@ public class Estimate {
 	private double deposit;
 	
 	public Estimate() {
-		this.insertDate = LocalDateTime.now();
+		this(null, null, null);
 	}
 
 	public Estimate(String id, Customer customer, LocalDateTime expirationDate) {
-		this();
-		this.id = id;
-		this.customer = customer;
-		this.clientId = (customer != null) ? customer.getId() : null;
-		this.expirationDate = expirationDate;
+		this(id, customer, expirationDate, LocalDateTime.now());
 	}
 
 	public Estimate(String id, Customer customer, LocalDateTime expirationDate, LocalDateTime insertDate) {
-		this(id, customer, expirationDate);
+		this.id = id;
+		if (customer != null) {
+			this.customer = new Customer(customer);
+			this.clientId = customer.getId();
+		}
+		this.expirationDate = expirationDate;
 		this.insertDate = insertDate;
 	}
 
@@ -50,7 +51,7 @@ public class Estimate {
 	}
 
 	public LocalDateTime getInsertDate() {
-		return this.insertDate;
+		return insertDate;
 	}
 
 	public String getFormatExpiringDate() {
@@ -68,7 +69,7 @@ public class Estimate {
 	public Customer getCustomer() {
 		if (customer == null)
 			customer = CustomerDaoFactory.getDao().getCustomer(clientId);
-		return customer;
+		return new Customer(customer);
 	}
 
 	public String getCustomerId() {
@@ -81,16 +82,20 @@ public class Estimate {
 	}
 
 	public List<ItemGroup> getItemGroups() {
-		return itemGroups;
+		ArrayList<ItemGroup> l = new ArrayList<>();
+		for (ItemGroup g : itemGroups)
+			l.add(new ItemGroup(g));
+		return l;
 	}
 
 	public void addItemGroup(ItemGroup g) {
-		itemGroups.add(g);
+		itemGroups.add(new ItemGroup(g));
 	}
 
 	public void overrideItemGroups(List<ItemGroup> list) {
 		itemGroups.clear();
-		itemGroups.addAll(list);
+		for (ItemGroup g : list)
+			itemGroups.add(new ItemGroup(g));
 	}
 
 	public double getDeposit() {

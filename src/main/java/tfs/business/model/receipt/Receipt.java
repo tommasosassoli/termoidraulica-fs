@@ -17,21 +17,20 @@ public class Receipt {
     private final List<Riba> ribaList = new ArrayList<>();
 
     public Receipt() {
-         taxRate = TaxRateDaoFactory.getDao().getTaxRate(22);
+         this(null, null, null);
     }
 
     public Receipt(String foreignId, String description, LocalDateTime date) {
-        this.foreignId = foreignId;
-        this.description = description;
-        this.date = date;
-        this.taxRate = TaxRateDaoFactory.getDao().getTaxRate(22);
+        this(foreignId, description, date,
+                TaxRateDaoFactory.getDao().getTaxRate(22));
     }
 
     public Receipt(String foreignId, String description, LocalDateTime date, TaxRate tax) {
         this.foreignId = foreignId;
         this.description = description;
         this.date = date;
-        this.taxRate = tax;
+        if (tax != null)
+            this.taxRate = new TaxRate(tax);
     }
 
     public String getId() {
@@ -67,15 +66,18 @@ public class Receipt {
     }
 
     public TaxRate getTaxRate() {
-        return taxRate;
+        return new TaxRate(taxRate);
     }
 
     public List<Riba> getRibaList() {
-        return ribaList;
+        ArrayList<Riba> l =  new ArrayList<>();
+        for (Riba r : ribaList)
+            l.add(new Riba(r));
+        return l;
     }
 
     public void addRiba(Riba r) {
-        ribaList.add(r);
+        ribaList.add(new Riba(r));
     }
 
     public double getTotalWithoutTaxRate() {

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tfs.business.dao.daofactory.TaxRateDaoFactory;
 import tfs.business.model.customer.Customer;
+import tfs.business.model.tax.TaxRate;
 import tfs.business.model.tax.Taxable;
 
 import java.time.LocalDateTime;
@@ -19,10 +20,11 @@ class EstimateTest {
     void createEstimate() {
         estimate = new Estimate("000", new Customer(), LocalDateTime.now());
 
-        Item i1 = new Item();//100
+        Item i1 = new Item();//100 (tax=10)
         i1.setQt(1);
         i1.setPrice(100);
-        Item i2 = new Item();//50
+        i1.setTaxRate(new TaxRate(10, ""));
+        Item i2 = new Item();//50 (tax=11)
         i2.setQt(2);
         i2.setPrice(25);
         Item i3 = new Item();//0
@@ -36,9 +38,10 @@ class EstimateTest {
 
         estimate.addItemGroup(group1);
 
-        Item i4 = new Item();//20
+        Item i4 = new Item();//20 (tax=2)
         i4.setQt(10);
         i4.setPrice(2);
+        i4.setTaxRate(new TaxRate(10, ""));
 
         ItemGroup group2 = new ItemGroup();
         group2.addItem(i4);
@@ -66,23 +69,17 @@ class EstimateTest {
 
     @Test
     void calculateTax() {
-        assertEquals(37.4, estimate.getCalculatedTax());
+        assertEquals(23, estimate.getCalculatedTax());
     }
 
     @Test
     void calculateEstimateTotal() {
         estimate.setDeposit(50);
-        assertEquals(157.4, estimate.getEstimateTotal());
+        assertEquals(143, estimate.getEstimateTotal());
     }
 
     @Test
     void getTaxableList() {
-        //first item of first group set to 10% tax rate
-        estimate.getItemGroups().get(0).getItems().get(0).setTaxRate(TaxRateDaoFactory.getDao().getTaxRate(10));
-
-        //first item of second group set to 10% tax rate
-        estimate.getItemGroups().get(1).getItems().get(0).setTaxRate(TaxRateDaoFactory.getDao().getTaxRate(10));
-
         //expecting result
         List<Taxable> expected = new ArrayList<>();
         expected.add(new Taxable(50, TaxRateDaoFactory.getDao().getTaxRate(22)));

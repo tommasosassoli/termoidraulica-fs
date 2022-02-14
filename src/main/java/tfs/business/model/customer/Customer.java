@@ -15,6 +15,11 @@ public class Customer {
 	public Customer() {
 	}
 
+	public Customer(Customer c) {
+		this(c.getId(), c.getName(), c.getSurname(), c.getResidence(), c.getMunicipality(),
+				c.getProvince(), c.getCap(), c.getCf(), c.getNotes());
+	}
+
 	public Customer(String id, String name, String surname, String residence, String municipality, String province,
 					String cap, String cf, String notes) {
 

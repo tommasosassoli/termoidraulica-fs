@@ -9,6 +9,11 @@ public class TaxRate {
 		this.description = description;
 	}
 
+	public TaxRate(TaxRate t) {
+		this.taxRate = t.getTaxRateValue();
+		this.description = t.getDescription();
+	}
+
 	public double getTaxRateValue() {
 		return taxRate;
 	}
