@@ -1,5 +1,6 @@
 package tfs.business.dao.daoimplementation;
 
+import tfs.business.dao.daofactory.CustomerDaoFactory;
 import tfs.business.dao.daofactory.TaxRateDaoFactory;
 import tfs.business.data.RDBConnection;
 import tfs.business.model.customer.Customer;
@@ -78,10 +79,9 @@ public class RDBEstimateDao implements EstimateDao {
                     return null;
 
                 Estimate e = createEstimate(rs.getInt(1),
-                        null,
+                        rs.getInt(2),
                         rs.getTimestamp(3),
                         rs.getTimestamp(4));
-                e.setCustomer(Integer.toString(rs.getInt(2)));
                 e.setDeposit(rs.getFloat(5));
 
                 e.overrideItemGroups(resolveItemGroupsAndItem(conn, id));
@@ -267,6 +267,11 @@ public class RDBEstimateDao implements EstimateDao {
             igList.get(igId).addItem(i);
         }
         return new ArrayList<>(igList.values());
+    }
+
+    private Estimate createEstimate(int id, int cId, Timestamp tsExp, Timestamp tsIn) {
+        return createEstimate(id, CustomerDaoFactory.getDao().getCustomer(String.valueOf(cId)),
+                tsExp, tsIn);
     }
 
     private Estimate createEstimate(int id, Customer c, Timestamp tsExp, Timestamp tsIn) {

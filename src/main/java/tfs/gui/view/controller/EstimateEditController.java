@@ -252,7 +252,7 @@ public class EstimateEditController extends AbstractController {
 	@FXML
 	private void changeCustomer() {
 		Customer c = clientsBar.getValue();
-		estimate.setCustomer(c.getId());
+		estimate.setCustomer(c);
 		notifyChanges();
 	}
 

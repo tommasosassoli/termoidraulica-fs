@@ -13,7 +13,6 @@ import tfs.business.model.tax.Taxable;
 
 public class Estimate {
 	private String id;
-	private String clientId;
 	private Customer customer;
 	private LocalDateTime expirationDate;
 	private LocalDateTime insertDate;
@@ -30,10 +29,8 @@ public class Estimate {
 
 	public Estimate(String id, Customer customer, LocalDateTime expirationDate, LocalDateTime insertDate) {
 		this.id = id;
-		if (customer != null) {
+		if (customer != null)
 			this.customer = new Customer(customer);
-			this.clientId = customer.getId();
-		}
 		this.expirationDate = expirationDate;
 		this.insertDate = insertDate;
 	}
@@ -67,18 +64,20 @@ public class Estimate {
 	}
 
 	public Customer getCustomer() {
-		if (customer == null)
-			customer = CustomerDaoFactory.getDao().getCustomer(clientId);
-		return new Customer(customer);
+		return (customer != null) ? new Customer(customer) : null;
 	}
 
 	public String getCustomerId() {
-		return clientId;
+		return (customer != null) ? customer.getId() : null;
 	}
 
-	public void setCustomer(String clientID) {
-		this.clientId = clientID;
-		customer = null;
+	public void setCustomer(String customerId) {
+		customer = CustomerDaoFactory.getDao().getCustomer(customerId);
+	}
+
+	public void setCustomer(Customer customer) {
+		if (customer != null)
+			this.customer = new Customer(customer);
 	}
 
 	public List<ItemGroup> getItemGroups() {
