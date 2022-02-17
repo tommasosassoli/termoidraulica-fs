@@ -1,0 +1,1 @@
+java -jar termoidraulica_fs.jar
