@@ -34,6 +34,12 @@ public class ItemGroup {
         items.add(new Item(e));
     }
 
+    public void overrideItem(List<Item> list) {
+        items.clear();
+        for (Item i : list)
+            items.add(new Item(i));
+    }
+
     public boolean removeItem(Item e) {
         return items.remove(e);
     }

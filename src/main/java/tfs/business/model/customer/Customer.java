@@ -81,7 +81,7 @@ public class Customer {
 	}
 
 	public void setProvince(String province) {
-		if (province.length() > 2)
+		if (province != null && province.length() > 2)
 			province = province.substring(0,2);
 		this.province = province;
 	}
@@ -91,7 +91,7 @@ public class Customer {
 	}
 
 	public void setCap(String cap) {
-		if (cap.length() > 5)
+		if (cap != null && cap.length() > 5)
 			cap = cap.substring(0,5);
 		this.cap = cap;
 	}
@@ -101,7 +101,7 @@ public class Customer {
 	}
 
 	public void setCf(String cf) {
-		if (cf.length() > 16)
+		if (cf != null && cf.length() > 16)
 			cf = cf.substring(0,16);
 		this.cf = cf;
 	}

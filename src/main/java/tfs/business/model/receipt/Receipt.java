@@ -3,6 +3,7 @@ package tfs.business.model.receipt;
 import tfs.business.model.tax.TaxRate;
 import tfs.business.dao.daofactory.TaxRateDaoFactory;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -46,8 +47,17 @@ public class Receipt {
         return foreignId;
     }
 
+    public void setForeignId(String foreignId) {
+        if (foreignId != null && !foreignId.isEmpty())
+            this.foreignId = foreignId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getFormatDate() {
@@ -60,13 +70,17 @@ public class Receipt {
         return date;
     }
 
-    private void setDate(String data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
-        this.date = LocalDateTime.parse(data, formatter);
+    public void setDate(LocalDate date) {
+        if (date != null)
+            this.date = date.atStartOfDay();
     }
 
     public TaxRate getTaxRate() {
         return new TaxRate(taxRate);
+    }
+
+    public void setTaxRate(TaxRate t) {
+        taxRate = new TaxRate(t);
     }
 
     public List<Riba> getRibaList() {
@@ -74,6 +88,12 @@ public class Receipt {
         for (Riba r : ribaList)
             l.add(new Riba(r));
         return l;
+    }
+
+    public void overrideRibaList(List<Riba> list) {
+        ribaList.clear();
+        for (Riba r : list)
+            ribaList.add(new Riba(r));
     }
 
     public void addRiba(Riba r) {
