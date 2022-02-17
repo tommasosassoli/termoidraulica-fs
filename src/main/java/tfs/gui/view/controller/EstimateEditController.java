@@ -290,6 +290,7 @@ public class EstimateEditController extends AbstractController {
 		if (newGroup.isEmpty()) {
 			itemGroupTable.getItems().remove(newGroup);
 		}
+		estimate.overrideItemGroups(observableGroups.stream().toList());
 		itemGroupTable.refresh();
 		notifyChanges();
 	}
@@ -299,6 +300,7 @@ public class EstimateEditController extends AbstractController {
 		if(group != null) {
 			launchEditItemGroupPopup(group);
 
+			estimate.overrideItemGroups(observableGroups.stream().toList());
 			itemGroupTable.refresh();
 			notifyChanges();
 		}
@@ -310,6 +312,7 @@ public class EstimateEditController extends AbstractController {
 				&& ViewManager.launchConfirmDialog("Rimuovere il sottototale selezionato?")) {
 			itemGroupTable.getItems().remove(itemGroupTable.getSelectionModel().getSelectedItem());
 
+			estimate.overrideItemGroups(observableGroups.stream().toList());
 			itemGroupTable.refresh();
 			this.refreshTotals();
 			notifyChanges();
@@ -337,6 +340,7 @@ public class EstimateEditController extends AbstractController {
 			if (newItem.isEmpty()) {
 				itemsTable.getItems().remove(newItem);
 			}
+			overrideItemsForItemGroup();
 			itemsTable.refresh();
 			itemGroupTable.refresh();
 			refreshTotals();
@@ -349,8 +353,9 @@ public class EstimateEditController extends AbstractController {
 		if (item != null) {
 			launchEditItemPopup(item);
 
-			itemsTable.refresh();
+			overrideItemsForItemGroup();
 			itemGroupTable.refresh();
+			itemsTable.refresh();
 			refreshTotals();
 			notifyChanges();
 		}
@@ -363,11 +368,20 @@ public class EstimateEditController extends AbstractController {
 					&& ViewManager.launchConfirmDialog("Rimuovere la riga selezionata?")) {
 				itemsTable.getItems().remove(itemsTable.getSelectionModel().getSelectedItem());
 
+				overrideItemsForItemGroup();
 				itemsTable.refresh();
 				itemGroupTable.refresh();
 				refreshTotals();
 				notifyChanges();
 			}
+		}
+	}
+
+	private void overrideItemsForItemGroup() {
+		ItemGroup g = itemGroupTable.getSelectionModel().getSelectedItem();
+		if (g != null) {
+			g.overrideItem(itemsTable.getItems());
+			estimate.overrideItemGroups(itemGroupTable.getItems());
 		}
 	}
 
@@ -394,9 +408,9 @@ public class EstimateEditController extends AbstractController {
 			to.addItem(item);
 		}
 
+		notifyChanges();
 		itemsTable.refresh();
 		itemGroupTable.refresh();
-		notifyChanges();
 	}
 
 	@FXML
@@ -416,8 +430,8 @@ public class EstimateEditController extends AbstractController {
 				getEstimate().setDeposit(sub);
 				deposit.setText(String.valueOf(sub));
 			}
-			this.refreshTotals();
 			notifyChanges();
+			this.refreshTotals();
 
 		} else {
 			deposit.setDisable(false);

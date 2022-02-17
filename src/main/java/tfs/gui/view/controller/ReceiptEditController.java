@@ -30,7 +30,6 @@ import java.time.LocalDate;
 public class ReceiptEditController extends AbstractController {
 	private ReceiptEndPoint endPoint = new ReceiptEndPoint();
 	private Receipt receipt;
-
 	private ObservableList<Riba> observableRiba;
 
 	NumberFormat numberFormat = DecimalFormat.getCurrencyInstance();
@@ -72,14 +71,14 @@ public class ReceiptEditController extends AbstractController {
 		amountCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 		amountCol.setOnEditCommit((TableColumn.CellEditEvent<Riba, Double> t) -> {
 			(t.getRowValue()).setAmount(t.getNewValue());
+			notifyRibaChanges();
 			this.refreshAll();
-			notifyChanges();
 		});
 
 		expireDateCol.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
 		expireDateCol.setOnEditCommit((TableColumn.CellEditEvent<Riba, LocalDate> t) -> {
 			(t.getRowValue()).setExpireDate(t.getNewValue());
-			notifyChanges();
+			notifyRibaChanges();
 		});
 
 
@@ -87,7 +86,7 @@ public class ReceiptEditController extends AbstractController {
 		paidCol.setCellFactory(ComboBoxTableCell.forTableColumn(true, false));
 		paidCol.setOnEditCommit((TableColumn.CellEditEvent<Riba, Boolean> t) -> {
 			(t.getRowValue()).setPaid(t.getNewValue());
-			notifyChanges();
+			notifyRibaChanges();
 		});
 	}
 
@@ -198,6 +197,20 @@ public class ReceiptEditController extends AbstractController {
 		notifyChanges();
 	}
 */
+	@FXML
+	private void changeReceiptFields() {
+		receipt.setForeignId(foreignId.getText());
+		receipt.setDescription(description.getText());
+		receipt.setDate(date.getValue());
+		receipt.setTaxRate(taxRate.getValue());
+		notifyChanges();
+	}
+
+	private void notifyRibaChanges() {
+		receipt.overrideRibaList(observableRiba.stream().toList());
+		notifyChanges();
+	}
+
 	private void notifyChanges() {
 		endPoint.updateReceipt(receipt);
 	}

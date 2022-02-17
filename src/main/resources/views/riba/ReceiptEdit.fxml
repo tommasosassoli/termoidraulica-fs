@@ -56,13 +56,13 @@
                   </rowConstraints>
                   <children>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID ESTERNO" textAlignment="RIGHT" />
-                     <TextField fx:id="foreignId" GridPane.columnIndex="1" />
+                     <TextField fx:id="foreignId" onAction="#changeReceiptFields" GridPane.columnIndex="1" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIZIONE" textAlignment="RIGHT" GridPane.rowIndex="1" />
-                     <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField fx:id="description" onAction="#changeReceiptFields" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATA di RIFERIMENTO" GridPane.rowIndex="2" />
-                     <DatePicker fx:id="date" prefHeight="30.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <DatePicker fx:id="date" onAction="#changeReceiptFields" prefHeight="30.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IVA" GridPane.rowIndex="3" />
-                     <ComboBox fx:id="taxRate" prefHeight="25.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <ComboBox fx:id="taxRate" onAction="#changeReceiptFields" prefHeight="25.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORTO SENZA IVA" GridPane.rowIndex="4" />
                      <Text fx:id="totalNoTax" strokeType="OUTSIDE" strokeWidth="0.0" text="0.000" GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <font>

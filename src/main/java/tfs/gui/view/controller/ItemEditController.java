@@ -116,11 +116,6 @@ public class ItemEditController extends AbstractController {
 	}
 
 	@FXML
-	private void cancelEdit() {
-		close();
-	}
-
-	@FXML
 	private void endEdit() {
 		item.setDescription(description.getText());
 		item.setUm(um.getText());

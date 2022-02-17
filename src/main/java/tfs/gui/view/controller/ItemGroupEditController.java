@@ -31,11 +31,6 @@ public class ItemGroupEditController extends AbstractController {
 	}
 
 	@FXML
-	private void cancelEdit() {
-		close();
-	}
-
-	@FXML
 	private void endEdit() {
 		itemGroup.setDescription(description.getText());
 
