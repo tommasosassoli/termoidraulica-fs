@@ -25,7 +25,6 @@
           <TableColumn fx:id="foreignIdCol" prefWidth="123.0" text="ID ESTERNO" />
           <TableColumn fx:id="descriptionCol" prefWidth="438.0" text="DESCRIZIONE" />
             <TableColumn fx:id="dateCol" prefWidth="222.0" text="DATA" />
-            <TableColumn fx:id="taxCol" prefWidth="208.0" text="IVA" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

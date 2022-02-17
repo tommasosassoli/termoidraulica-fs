@@ -31,8 +31,6 @@ public class ReceiptListController extends AbstractController {
 	private TableColumn<Receipt, String> descriptionCol = new TableColumn<>();
 	@FXML
 	private TableColumn<Receipt, String> dateCol = new TableColumn<>();
-	@FXML
-	private TableColumn<TaxRate, String> taxCol = new TableColumn<>();
 
 
 	private ObservableList<Receipt> masterList;
@@ -45,7 +43,6 @@ public class ReceiptListController extends AbstractController {
 		foreignIdCol.setCellValueFactory(new PropertyValueFactory<>("foreignId"));
 		descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<>("formatDate"));
-		taxCol.setCellValueFactory(new PropertyValueFactory<>("taxRate"));
 
 		// set double click
 		receiptsTable.setOnMouseClicked(event -> {
