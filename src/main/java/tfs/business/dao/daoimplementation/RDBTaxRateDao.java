@@ -14,7 +14,7 @@ public class RDBTaxRateDao implements TaxRateDao {
     public List<TaxRate> getTaxRatesList() {
         Connection conn = RDBConnection.getInstance().getConnection();
         if (conn != null) {
-            String sql = "SELECT taxRate, description FROM TaxRate";
+            String sql = "SELECT taxRate, description FROM TaxRate ORDER BY taxRate DESC";
 
             try {
                 Statement stmt = conn.createStatement();

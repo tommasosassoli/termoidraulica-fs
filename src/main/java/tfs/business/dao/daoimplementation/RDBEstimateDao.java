@@ -36,7 +36,7 @@ public class RDBEstimateDao implements EstimateDao {
         Connection conn = RDBConnection.getInstance().getConnection();
         if (conn != null) {
             String sql = "SELECT e.estimateId, c.customerName, c.customerSurname, e.expirationDate, e.insertDate " +
-                    "FROM Estimate e JOIN Customer c ON c.id = e.customerId ORDER BY e.expirationDate;";
+                    "FROM Estimate e JOIN Customer c ON c.id = e.customerId ORDER BY e.insertDate DESC;";
 
             try {
                 Statement stmt = conn.createStatement();

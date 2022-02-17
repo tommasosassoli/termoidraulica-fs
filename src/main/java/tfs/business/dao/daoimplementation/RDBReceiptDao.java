@@ -32,7 +32,7 @@ public class RDBReceiptDao implements ReceiptDao {
     public List<Receipt> getReceiptList() {
         Connection conn = RDBConnection.getInstance().getConnection();
         if (conn != null) {
-            String sql = "SELECT id, foreignId, description, date FROM Receipt;";
+            String sql = "SELECT id, foreignId, description, date FROM Receipt ORDER BY date DESC;";
 
             try {
                 Statement stmt = conn.createStatement();

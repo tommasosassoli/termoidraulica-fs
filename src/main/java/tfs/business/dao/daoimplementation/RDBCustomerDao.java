@@ -35,7 +35,8 @@ public class RDBCustomerDao implements CustomerDao {
     public List<Customer> getCustomerList() {
         Connection conn = RDBConnection.getInstance().getConnection();
         if (conn != null) {
-            String sql = "SELECT id, customerName, customerSurname FROM Customer ORDER BY id DESC;";
+            String sql = "SELECT id, customerName, customerSurname FROM Customer " +
+                    "ORDER BY customerSurname, customerName;";
 
             try {
                 Statement stmt = conn.createStatement();
