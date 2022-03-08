@@ -17,7 +17,7 @@ Otherwise you can create a script for your OS system. Under [Script](https://git
 folder you can find some script that able to run the application with and without the shell. 
 Copy them into the same folder and run.
 
-### Connection to database instruction
+### Connection to database instructions
 You need to open the `termoidraulica_fs.jar` file and looking for `config/database.properties` file.
 Open this and change the field that you need.
 This is an example:
@@ -26,7 +26,7 @@ host=localhost
 port=5432
 db_name=termoidraulica_fs
 user=tfs_user
-password=lory-gra
+password=1234
 ```
 
 ### Update instructions
