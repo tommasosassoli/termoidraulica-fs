@@ -72,6 +72,13 @@
 		</band>
 	</columnHeader>
 	<detail>
+		<band height="20">
+			<subreport overflowType="Stretch">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="2" width="540" height="17" isRemoveLineWhenBlank="true" uuid="08f1b604-4d6d-4efb-aeaa-c639c470a3e9"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{items})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/ItemsB.jrxml"))]]></subreportExpression>
+			</subreport>
+		</band>
 		<band height="22">
 			<property name="com.jaspersoft.studio.layout"/>
 			<textField>
@@ -81,20 +88,13 @@
 			</textField>
 			<textField>
 				<reportElement x="430" y="2" width="70" height="20" uuid="b6772438-ae2e-45f6-9bdb-73c4e14c9db4"/>
-				<textElement markup="styled" textAlignment="Right"/>
+				<textElement textAlignment="Right" markup="styled"/>
 				<textFieldExpression><![CDATA["<style isItalic='true'>" + new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{itemGroupSubtotal}) + "</style>"]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
-			<subreport overflowType="Stretch">
-				<reportElement stretchType="ElementGroupHeight" x="0" y="2" width="540" height="17" isRemoveLineWhenBlank="true" uuid="08f1b604-4d6d-4efb-aeaa-c639c470a3e9"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{items})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/ItemsB.jrxml"))]]></subreportExpression>
-			</subreport>
-		</band>
 		<band height="7">
 			<line>
-				<reportElement x="1" y="0" width="538" height="1" forecolor="#cfcfcf" uuid="50d1d2a2-e591-49da-b0d4-4903a95578bd"/>
+				<reportElement x="1" y="0" width="538" height="1" forecolor="#CFCFCF" uuid="50d1d2a2-e591-49da-b0d4-4903a95578bd"/>
 			</line>
 		</band>
 	</detail>

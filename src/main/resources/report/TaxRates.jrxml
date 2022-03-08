@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final utlizzo versione della libreria JasperReports6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final utlizzo versione della libreria JasperReports6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="importiIva" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="958dedcb-4fcc-4bb0-b588-dd79726d3695">
 	<queryString>
 		<![CDATA[]]>
@@ -40,6 +40,7 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{taxable} > 0]]></printWhenExpression>
 			<textField isBlankWhenNull="false">
 				<reportElement x="17" y="0" width="100" height="20" uuid="708a9e47-c3f7-440e-83bb-46cb4304fe64">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f5d7558-8e58-453a-bf68-1667b72914bb"/>
