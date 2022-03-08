@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -49,6 +50,9 @@ public class ViewManager {
 		// init the menu bar
 		MenuBar hb = (MenuBar) this.loadFXML(ViewResolver.MENU_BAR, new MenuBarController(this));
 		mainLayout.setTop(hb);
+
+		// init the icon
+		primaryStage.getIcons().add(new Image(ViewManager.class.getResourceAsStream("/views/icons/logo_ts.png")));
 	}
 
 	private void initViews() {		//TODO make tests

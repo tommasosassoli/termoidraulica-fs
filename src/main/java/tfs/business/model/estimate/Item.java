@@ -13,7 +13,7 @@ public class Item {
 
 	public Item() {
 		this.qt = 0;
-		this.taxRate = TaxRateDaoFactory.getDao().getTaxRate(22);
+		this.taxRate = TaxRateDaoFactory.getDao().getTaxRate(0);
 		this.discount = 0;
 	}
 

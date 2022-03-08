@@ -288,7 +288,9 @@ public class EstimateEditController extends AbstractController {
 
 		launchEditItemGroupPopup(newGroup);
 		if (newGroup.isEmpty()) {
-			itemGroupTable.getItems().remove(newGroup);
+			boolean remove = ViewManager.launchConfirmDialog("Il sottototale inserito è vuoto, vuoi rimuoverlo?");
+			if (remove)
+				itemGroupTable.getItems().remove(newGroup);
 		}
 		estimate.overrideItemGroups(observableGroups.stream().toList());
 		itemGroupTable.refresh();

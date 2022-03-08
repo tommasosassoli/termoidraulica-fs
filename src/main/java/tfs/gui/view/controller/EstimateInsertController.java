@@ -35,12 +35,19 @@ public class EstimateInsertController extends AbstractController {
 	}
 
 	public void initialize() {
+		estimateDate.setValue(LocalDate.now().plusDays(1));
+	}
+
+	@Override
+	public void refresh() {
+		refreshCustomerBar();
+	}
+
+	private void refreshCustomerBar() {
 		ObservableList<Customer> lc = FXCollections.observableArrayList();
 		lc.addAll(customerEndPoint.getCustomerList());
 		clientsMasterList = lc;
 		clientsBar.setItems(lc);
-
-		estimateDate.setValue(LocalDate.now().plusDays(1));
 	}
 
 	@FXML

@@ -264,7 +264,8 @@ public class RDBEstimateDao implements EstimateDao {
             TaxRate tax = TaxRateDaoFactory.getDao().getTaxRate(rs.getInt(8));
             i.setTaxRate(tax);
 
-            igList.get(igId).addItem(i);
+            if (!i.isEmpty())
+                igList.get(igId).addItem(i);
         }
         return new ArrayList<>(igList.values());
     }
