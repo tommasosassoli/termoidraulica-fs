@@ -27,6 +27,7 @@ class EstimateTest {
         Item i2 = new Item();//50 (tax=11)
         i2.setQt(2);
         i2.setPrice(25);
+        i2.setTaxRate(new TaxRate(22, ""));
         Item i3 = new Item();//0
         i3.setQt(1);
         i3.setPrice(0);
