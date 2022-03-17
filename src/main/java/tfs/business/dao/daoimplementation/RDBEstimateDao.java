@@ -193,7 +193,7 @@ public class RDBEstimateDao implements EstimateDao {
         for (int i = 0; i < listIg.size(); i++) {
             sqlIg += (firstIg ? "(" : ", (");
             firstIg = false;
-            sqlIg += i + "," + estimateId + ",'" + listIg.get(i).getDescription() + "') ";
+            sqlIg += i + "," + estimateId + ",'" + escape(listIg.get(i).getDescription()) + "') ";
 
             List<Item> listI = listIg.get(i).getItems();
             for (int j = 0; j < listI.size(); j++) {
@@ -201,7 +201,7 @@ public class RDBEstimateDao implements EstimateDao {
 
                 sqlI += (firstI ? "(" : ", (");
                 firstI = false;
-                sqlI += j + "," + i + "," + estimateId + ",'" + item.getDescription() + "','" + item.getUm() + "'," + item.getQt() +
+                sqlI += j + "," + i + "," + estimateId + ",'" + escape(item.getDescription()) + "','" + escape(item.getUm()) + "'," + item.getQt() +
                         "," + item.getPrice() + "," + item.getDiscount() + "," + item.getTaxRate().getTaxRateValue() + ") ";
             }
         }
@@ -280,5 +280,9 @@ public class RDBEstimateDao implements EstimateDao {
         LocalDateTime ldtIn = (tsIn != null) ? tsIn.toLocalDateTime() : null;
 
         return new Estimate(Integer.toString(id), c, ldtExp, ldtIn);
+    }
+
+    private String escape(String s) {
+        return s.replace("\'", "''");
     }
 }
