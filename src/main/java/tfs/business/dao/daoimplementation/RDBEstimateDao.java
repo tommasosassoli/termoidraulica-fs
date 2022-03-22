@@ -26,6 +26,12 @@ public class RDBEstimateDao implements EstimateDao {
                 return insertEstimateWithItemGroupsAndItem(conn, e);
             } catch (SQLException g) {
                 LogService.error(this.getClass(), "Error during estimate insertion", true, g);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, f);
+                }
             }
         }
         return false;
@@ -58,6 +64,12 @@ public class RDBEstimateDao implements EstimateDao {
 
             } catch (SQLException g) {
                 LogService.error(this.getClass(), "Error during estimate list select", true, g);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -88,6 +100,12 @@ public class RDBEstimateDao implements EstimateDao {
                 return e;
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during estimate select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -108,6 +126,12 @@ public class RDBEstimateDao implements EstimateDao {
                         conn.rollback();
                 } catch (SQLException ex) {
                     LogService.error(this.getClass(), "Error during estimate update", true, ex);
+                } finally {
+                    try {
+                        conn.close();
+                    } catch (SQLException f) {
+                        LogService.error(this.getClass(), "Error during closing connection", false, f);
+                    }
                 }
             }
         }
@@ -124,6 +148,12 @@ public class RDBEstimateDao implements EstimateDao {
                     return delete(conn, Integer.parseInt(id)) ? e : null;
                 } catch (SQLException ex) {
                     LogService.error(this.getClass(), "Error during estimate delete", true, ex);
+                } finally {
+                    try {
+                        conn.close();
+                    } catch (SQLException f) {
+                        LogService.error(this.getClass(), "Error during closing connection", false, f);
+                    }
                 }
             }
         }

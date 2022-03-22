@@ -23,6 +23,12 @@ public class RDBReceiptDao implements ReceiptDao {
                 return insertReceiptWithRiba(conn, r);
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during receipt insert", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return false;
@@ -48,6 +54,12 @@ public class RDBReceiptDao implements ReceiptDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during receipt list select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -80,6 +92,12 @@ public class RDBReceiptDao implements ReceiptDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during receipt select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -98,6 +116,12 @@ public class RDBReceiptDao implements ReceiptDao {
                     }
                 } catch (SQLException ex) {
                     LogService.error(this.getClass(), "Error during receipt update", true, ex);
+                } finally {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        LogService.error(this.getClass(), "Error during closing connection", false, e);
+                    }
                 }
             }
         }
@@ -114,6 +138,12 @@ public class RDBReceiptDao implements ReceiptDao {
                     return delete(conn, Integer.parseInt(id)) ? r : null;
                 } catch (SQLException ex) {
                     LogService.error(this.getClass(), "Error during receipt delete", true, ex);
+                } finally {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        LogService.error(this.getClass(), "Error during closing connection", false, e);
+                    }
                 }
             }
         }

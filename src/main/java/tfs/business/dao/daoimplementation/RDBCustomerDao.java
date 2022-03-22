@@ -26,6 +26,12 @@ public class RDBCustomerDao implements CustomerDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer insert", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return false;
@@ -54,6 +60,12 @@ public class RDBCustomerDao implements CustomerDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer list select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -88,6 +100,12 @@ public class RDBCustomerDao implements CustomerDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -109,6 +127,12 @@ public class RDBCustomerDao implements CustomerDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer update", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return false;
@@ -132,6 +156,12 @@ public class RDBCustomerDao implements CustomerDao {
                 return c;
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during customer delete", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;

@@ -29,6 +29,12 @@ public class RDBTaxRateDao implements TaxRateDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during tax rate list select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
@@ -52,6 +58,12 @@ public class RDBTaxRateDao implements TaxRateDao {
 
             } catch (SQLException e) {
                 LogService.error(this.getClass(), "Error during tax rate select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
             }
         }
         return null;
