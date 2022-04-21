@@ -15,9 +15,6 @@ class ItemTest {
         assertNotNull(item);
 
         item.setTaxRate(TaxRateDaoFactory.getDao().getTaxRate(0));
-
-        item.setPrice(-50);
-        assertEquals(0, item.getPrice());
         item.setPrice(50);
 
         item.setQt(-2);

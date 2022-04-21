@@ -401,18 +401,20 @@ public class EstimateEditController extends AbstractController {
 	private void crossItem() {
 		ItemGroup from = itemGroupTable.getSelectionModel().getSelectedItem();
 		Item item = itemsTable.getSelectionModel().getSelectedItem();
+		int itemIndex = itemsTable.getSelectionModel().getSelectedIndex();
 
 		ItemGroup to = ViewManager.launchListInputDialog("Seleziona un subtotale",
 				itemGroupTable.getItems().stream().toList(), from);
 
 		if (to != null && to != from) {
-			from.removeItem(item);
+			from.removeItem(itemIndex);
 			to.addItem(item);
 		}
 
+		estimate.overrideItemGroups(itemGroupTable.getItems());
 		notifyChanges();
-		itemsTable.refresh();
 		itemGroupTable.refresh();
+		refreshItems();
 	}
 
 	@FXML
@@ -474,6 +476,7 @@ public class EstimateEditController extends AbstractController {
 		itemsTable.getSelectionModel().select(dropIndex);
 		itemsTable.scrollTo(dropIndex);
 
+		overrideItemsForItemGroup();
 		notifyChanges();
 	}
 

@@ -40,8 +40,8 @@ public class ItemGroup {
             items.add(new Item(i));
     }
 
-    public boolean removeItem(Item e) {
-        return items.remove(e);
+    public Item removeItem(int index) {
+        return items.remove(index);
     }
 
     public double getItemGroupSubtotal() {
