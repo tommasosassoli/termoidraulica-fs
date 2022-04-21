@@ -88,7 +88,9 @@
 			</textField>
 			<textField>
 				<reportElement x="430" y="2" width="70" height="20" uuid="b6772438-ae2e-45f6-9bdb-73c4e14c9db4"/>
-				<textElement textAlignment="Right" markup="styled"/>
+				<textElement textAlignment="Right" markup="styled">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA["<style isItalic='true'>" + new java.text.DecimalFormat("#00,000.00").getCurrencyInstance().format($F{itemGroupSubtotal}) + "</style>"]]></textFieldExpression>
 			</textField>
 		</band>
