@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import tfs.business.dao.daofactory.CompanyDataDaoFactory;
 import tfs.business.model.companydata.CompanyData;
 import tfs.gui.resolvers.ViewResolver;
+import tfs.gui.view.tasks.OpenLauncherTask;
 import tfs.service.LogService;
 import tfs.gui.view.controller.MenuBarController;
 
@@ -34,12 +35,18 @@ public class ViewManager {
 	}
 
 	public void start() {
+		//initLauncher();
 		initLayout();
 		initViews();
 		activate(ViewResolver.HOME);
 
 		primaryStage.show();
 	}
+
+/*	private void initLauncher() {
+		OpenLauncherTask splash = new OpenLauncherTask();
+		new Thread(splash).start();
+	}*/
 
 	private void initLayout() {
 		// init the root layout
@@ -88,11 +95,19 @@ public class ViewManager {
 
 	public void activate(ViewResolver name) {
 		mainLayout.setCenter(views.get(name));//TODO test
-		((AbstractController) views.get(name).getUserData()).refresh();
+		refreshView(name);
 	}
 
 	public void activate(ViewResolver name, Object arg) {
 		mainLayout.setCenter(views.get(name));//TODO test
+		refreshView(name, arg);
+	}
+
+	public void refreshView(ViewResolver name) {
+		((AbstractController) views.get(name).getUserData()).refresh();
+	}
+
+	public void refreshView(ViewResolver name, Object arg) {
 		((AbstractController) views.get(name).getUserData()).refresh(arg);
 	}
 
