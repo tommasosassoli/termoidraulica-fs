@@ -130,6 +130,26 @@ public class Estimate {
 	}
 
 	/**
+	 * @return the total value of the estimate (sum over positive price)
+	 * */
+	public double getCashValue() {
+		double value = 0;
+		for (ItemGroup ig : itemGroups)
+			value += ig.getItemGroupCashValue();
+		return value;
+	}
+
+	/**
+	 * @return the total discount of the estimate (sum over negative price)
+	 * */
+	public double getDiscountPrice() {
+		double discount = 0;
+		for (ItemGroup ig : itemGroups)
+			discount += ig.getItemGroupDiscountPrice();
+		return discount;
+	}
+
+	/**
 	 * @return the subtotal for the estimate
 	 * */
 	public double getEstimateSubtotal() {

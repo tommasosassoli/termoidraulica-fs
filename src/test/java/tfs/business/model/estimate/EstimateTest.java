@@ -44,16 +44,21 @@ class EstimateTest {
         i4.setPrice(2);
         i4.setTaxRate(new TaxRate(10, ""));
 
+        Item i5 = new Item();//20 (tax=2)
+        i5.setQt(1);
+        i5.setPrice(-10);
+
         ItemGroup group2 = new ItemGroup();
         group2.addItem(i4);
+        group2.addItem(i5);
 
         estimate.addItemGroup(group2);
-        //total 170
+        //total 160
     }
 
     @Test
     void calculateEstimateSubtotal() {
-        assertEquals(170, estimate.getEstimateSubtotal());
+        assertEquals(160, estimate.getEstimateSubtotal());
     }
 
     @Test
@@ -62,10 +67,10 @@ class EstimateTest {
         assertEquals(0, estimate.getDeposit());
         estimate.setDeposit(50);
 
-        assertEquals(120, estimate.getTaxableTotal());
+        assertEquals(110, estimate.getTaxableTotal());
 
         estimate.setDeposit(0);
-        assertEquals(170, estimate.getTaxableTotal());
+        assertEquals(160, estimate.getTaxableTotal());
     }
 
     @Test
@@ -76,7 +81,7 @@ class EstimateTest {
     @Test
     void calculateEstimateTotal() {
         estimate.setDeposit(50);
-        assertEquals(143, estimate.getEstimateTotal());
+        assertEquals(133, estimate.getEstimateTotal());
     }
 
     @Test
@@ -98,6 +103,12 @@ class EstimateTest {
             }
         }
         assertEquals(4, ok);
+    }
+
+    @Test
+    void cashValueAndDiscountPriceTest() {
+        assertEquals(170, estimate.getCashValue());
+        assertEquals(10, estimate.getDiscountPrice());
     }
 
 }

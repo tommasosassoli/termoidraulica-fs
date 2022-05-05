@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import tfs.business.endpoint.ReceiptEndPoint;
 import tfs.business.model.receipt.Receipt;
 import tfs.business.model.tax.TaxRate;
@@ -16,9 +17,13 @@ import tfs.gui.resolvers.ViewResolver;
 import tfs.gui.util.StringComparator;
 import tfs.gui.view.AbstractController;
 import tfs.gui.view.ViewManager;
+import tfs.gui.view.tasks.OpenViewTask;
 
 public class ReceiptListController extends AbstractController {
 	private ReceiptEndPoint endPoint = new ReceiptEndPoint();
+
+	@FXML
+	private AnchorPane progressIndicatorLayer;
 	@FXML
 	private TextField searchBar;
 	@FXML
@@ -89,8 +94,14 @@ public class ReceiptListController extends AbstractController {
 	}
 
 	private void openReceipt() {
-		Receipt c = receiptsTable.getSelectionModel().getSelectedItem();
-		this.getViewManager().activate(ViewResolver.RECEIPT_EDIT, c.getId());
+		progressIndicatorLayer.setVisible(true);
+		String id = receiptsTable.getSelectionModel().getSelectedItem().getId();
+
+		OpenViewTask task = new OpenViewTask(getViewManager(), ViewResolver.RECEIPT_EDIT, id);
+		task.setOnSucceeded(e -> progressIndicatorLayer.setVisible(false));
+		task.setOnFailed(e -> progressIndicatorLayer.setVisible(false));
+
+		new Thread(task).start();
 	}
 
 	@FXML

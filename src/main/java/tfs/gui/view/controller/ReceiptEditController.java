@@ -62,6 +62,15 @@ public class ReceiptEditController extends AbstractController {
 	}
 
 	public void initialize() {
+		foreignId.focusedProperty().addListener((obs, oldVal, newVal) -> {
+			if (!newVal)
+				notifyChanges();
+		});
+		description.focusedProperty().addListener((obs, oldVal, newVal) -> {
+			if (!newVal)
+				notifyChanges();
+		});
+
 		amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 		expireDateCol.setCellValueFactory(new PropertyValueFactory<>("expireDate"));
 		paidCol.setCellValueFactory(new PropertyValueFactory<>("paid"));
@@ -152,16 +161,16 @@ public class ReceiptEditController extends AbstractController {
 		}
 	}
 
-/*	@FXML
-	private void swapItemUp() {
-		swapItem(true);
+	@FXML
+	private void swapRibaUp() {
+		swapRiba(true);
 	}
 
 	@FXML
-	private void swapItemDown() {
-		swapItem(false);
+	private void swapRibaDown() {
+		swapRiba(false);
 	}
-*/
+
 	@FXML
 	private void delete() {
 		if (ViewManager.launchConfirmDialog("Sei sicuro di voler ELIMINARE questa ricevuta?")) {
@@ -175,7 +184,7 @@ public class ReceiptEditController extends AbstractController {
 		this.getViewManager().activate(ViewResolver.RECEIPT_LIST);
 	}
 
-/*	private void swapItem(boolean up) {
+	private void swapRiba(boolean up) {
 		int draggedIndex = ribaTable.getSelectionModel().getSelectedIndex();
 		Riba draggedItem = ribaTable.getItems().remove(draggedIndex);
 
@@ -194,9 +203,9 @@ public class ReceiptEditController extends AbstractController {
 		ribaTable.getSelectionModel().select(dropIndex);
 		ribaTable.scrollTo(dropIndex);
 
-		notifyChanges();
+		notifyRibaChanges();
 	}
-*/
+
 	@FXML
 	private void changeReceiptFields() {
 		receipt.setForeignId(foreignId.getText());

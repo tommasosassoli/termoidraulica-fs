@@ -3,7 +3,7 @@ package tfs.gui.view.controller;
 import java.time.LocalDateTime;
 
 import javafx.collections.ObservableList;
-import tfs.business.endpoint.CustomerEndPoint;
+import javafx.scene.layout.AnchorPane;
 import tfs.business.endpoint.EstimateEndPoint;
 import tfs.business.model.customer.Customer;
 import tfs.business.model.estimate.Estimate;
@@ -19,10 +19,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import tfs.gui.view.AbstractController;
 import tfs.gui.view.ViewManager;
+import tfs.gui.view.tasks.OpenViewTask;
 
 public class EstimateListController extends AbstractController {
 	private EstimateEndPoint estimateEndPoint = new EstimateEndPoint();
 	private ObservableList<Estimate> estimateMasterList;
+
+	@FXML
+	private AnchorPane progressIndicatorLayer;
 	@FXML
 	private TableView<Estimate> estimateTable = new TableView<>();
 	@FXML
@@ -38,7 +42,7 @@ public class EstimateListController extends AbstractController {
 	@FXML
 	private ComboBox<String> searchField;
 	@FXML
-	private ImageView removeFilter;
+	private ImageView cancelFilter;
 
 	public EstimateListController(ViewManager viewManager) {
 		super(viewManager);
@@ -85,14 +89,14 @@ public class EstimateListController extends AbstractController {
 		}
 
 		estimateTable.setItems(list);
-		removeFilter.setVisible(true);
+		cancelFilter.setVisible(true);
 	}
 
 	@FXML
 	private void removeFilter() {
 		estimateTable.setItems(estimateMasterList);
 		searchBar.setText("");
-		removeFilter.setVisible(false);
+		cancelFilter.setVisible(false);
 	}
 
 	@FXML
@@ -108,7 +112,13 @@ public class EstimateListController extends AbstractController {
 	}
 
 	private void estimateOpen() {
+		progressIndicatorLayer.setVisible(true);
 		String id = estimateTable.getSelectionModel().getSelectedItem().getId();
-		this.getViewManager().activate(ViewResolver.ESTIMATE_EDIT, id);
+
+		OpenViewTask task = new OpenViewTask(getViewManager(), ViewResolver.ESTIMATE_EDIT, id);
+		task.setOnSucceeded(e -> progressIndicatorLayer.setVisible(false));
+		task.setOnFailed(e -> progressIndicatorLayer.setVisible(false));
+
+		new Thread(task).start();
 	}
 }

@@ -51,6 +51,32 @@ public class ItemGroup {
         return subtotal;
     }
 
+    /**
+     * @return the sum over the item that have a positive subtotal
+     * */
+    public double getItemGroupCashValue() {
+        double value = 0;
+        for (Item i : items) {
+            double sub = i.getItemSubtotal();
+            if (sub > 0)
+                value += sub;
+        }
+        return value;
+    }
+
+    /**
+     * @return the sum over the item that have a negative subtotal in abs
+     * */
+    public double getItemGroupDiscountPrice() {
+        double discount = 0;
+        for (Item i : items) {
+            double sub = i.getItemSubtotal();
+            if (sub < 0)
+                discount -= sub;
+        }
+        return discount;
+    }
+
     public boolean isEmpty() {
         return items.isEmpty() && getDescription().isEmpty();
     }

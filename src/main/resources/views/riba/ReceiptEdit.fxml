@@ -56,9 +56,9 @@
                   </rowConstraints>
                   <children>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID ESTERNO" textAlignment="RIGHT" />
-                     <TextField fx:id="foreignId" onAction="#changeReceiptFields" GridPane.columnIndex="1" />
+                     <TextField fx:id="foreignId" onAction="#changeReceiptFields" onInputMethodTextChanged="#changeReceiptFields" GridPane.columnIndex="1" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIZIONE" textAlignment="RIGHT" GridPane.rowIndex="1" />
-                     <TextField fx:id="description" onAction="#changeReceiptFields" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField fx:id="description" onAction="#changeReceiptFields" onInputMethodTextChanged="#changeReceiptFields" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATA di RIFERIMENTO" GridPane.rowIndex="2" />
                      <DatePicker fx:id="date" onAction="#changeReceiptFields" prefHeight="30.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IVA" GridPane.rowIndex="3" />
@@ -97,6 +97,24 @@
                <children>
                   <HBox alignment="BOTTOM_RIGHT" maxHeight="40.0">
                      <children>
+                           <Button mnemonicParsing="false" onAction="#swapRibaUp" prefHeight="31.0" prefWidth="38.0">
+                              <graphic>
+                                 <ImageView fx:id="removeMaterialeImg1" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../icons/arrow-up.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                           <Button mnemonicParsing="false" onAction="#swapRibaDown" prefHeight="31.0" prefWidth="38.0">
+                              <graphic>
+                                 <ImageView fx:id="removeMaterialeImg2" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../icons/arrow-down.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
                         <Button mnemonicParsing="false" onAction="#removeRiba" prefHeight="31.0" prefWidth="38.0">
                            <graphic>
                               <ImageView fx:id="removeMaterialeImg" fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
