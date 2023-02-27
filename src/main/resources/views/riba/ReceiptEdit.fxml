@@ -27,7 +27,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Ricevuta">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Modifica Ricevuta">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -64,13 +64,13 @@
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IVA" GridPane.rowIndex="3" />
                      <ComboBox fx:id="taxRate" onAction="#changeReceiptFields" prefHeight="25.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORTO SENZA IVA" GridPane.rowIndex="4" />
-                     <Text fx:id="totalNoTax" strokeType="OUTSIDE" strokeWidth="0.0" text="0.000" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <Text fx:id="totalNoTax"  styleClass="text" strokeType="OUTSIDE" strokeWidth="0.0" text="0.000" GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <font>
                            <Font name="System Italic" size="16.0" />
                         </font>
                      </Text>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORTO TOTALE" GridPane.rowIndex="5" />
-                     <Text fx:id="totalWithTax" strokeType="OUTSIDE" strokeWidth="0.0" text="0.000" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <Text fx:id="totalWithTax"  styleClass="text" strokeType="OUTSIDE" strokeWidth="0.0" text="0.000" GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <font>
                            <Font name="System Bold Italic" size="16.0" />
                         </font>

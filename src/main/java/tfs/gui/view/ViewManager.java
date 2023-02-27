@@ -12,12 +12,12 @@ import javafx.stage.Stage;
 import tfs.business.dao.daofactory.CompanyDataDaoFactory;
 import tfs.business.model.companydata.CompanyData;
 import tfs.gui.resolvers.ViewResolver;
-import tfs.gui.view.tasks.OpenLauncherTask;
 import tfs.service.LogService;
 import tfs.gui.view.controller.MenuBarController;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +27,8 @@ public class ViewManager {
 	private BorderPane mainLayout;
 	private final HashMap<ViewResolver, Pane> views = new HashMap<>();
 	private static CompanyData companyData = CompanyDataDaoFactory.getDao().getCompanyData();
+	private boolean darkThemeApplied = false;
+	private final String darkTheme = ViewManager.class.getResource("/views/css/dark.css").toExternalForm();
 
 
 	public ViewManager(Stage stage) {
@@ -35,18 +37,15 @@ public class ViewManager {
 	}
 
 	public void start() {
-		//initLauncher();
 		initLayout();
 		initViews();
 		activate(ViewResolver.HOME);
 
+		if (LocalTime.now().isAfter(LocalTime.of(18,30)))
+			toggleDarkTheme();
+
 		primaryStage.show();
 	}
-
-/*	private void initLauncher() {
-		OpenLauncherTask splash = new OpenLauncherTask();
-		new Thread(splash).start();
-	}*/
 
 	private void initLayout() {
 		// init the root layout
@@ -109,6 +108,17 @@ public class ViewManager {
 
 	public void refreshView(ViewResolver name, Object arg) {
 		((AbstractController) views.get(name).getUserData()).refresh(arg);
+	}
+
+	public boolean toggleDarkTheme() {
+		if (!darkThemeApplied) {
+			mainLayout.getStylesheets().add(darkTheme);
+			darkThemeApplied = true;
+		} else {
+			mainLayout.getStylesheets().remove(darkTheme);
+			darkThemeApplied = false;
+		}
+		return darkThemeApplied;
 	}
 
 	public static void launchInfoDialog(String str) {
@@ -184,6 +194,9 @@ public class ViewManager {
 		Pane root = new Pane();
 		root.getChildren().addAll(view);
 		root.setUserData(view.getUserData());
+
+		if (darkThemeApplied)
+			root.getStylesheets().add(darkTheme);
 
 		Stage stage = new Stage();
         stage.setTitle(title);

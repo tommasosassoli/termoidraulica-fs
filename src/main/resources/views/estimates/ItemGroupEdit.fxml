@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="465.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="277.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Descrizione Sottototale">
+      <Text layoutX="277.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Modifica Descrizione Sottototale">
          <font>
             <Font size="24.0" />
          </font></Text>

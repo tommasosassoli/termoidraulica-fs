@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,6 +11,11 @@
          <items>
             <MenuItem mnemonicParsing="false" onAction="#goHome" text="Home" />
             <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Chiudi" />
+         </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Tema">
+         <items>
+            <CheckMenuItem fx:id="darkThemeButton" mnemonicParsing="false" onAction="#toggleDarkTheme" text="Tema scuro" />
          </items>
       </Menu>
    </menus>

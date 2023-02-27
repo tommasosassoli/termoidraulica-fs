@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="813.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="813.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" minHeight="200.0" minWidth="500.0" prefHeight="200.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inserimento nuovo cliente" textAlignment="CENTER" wrappingWidth="440.30810546875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Inserimento nuovo cliente" textAlignment="CENTER" wrappingWidth="440.30810546875">
                      <font>
                         <Font size="33.0" />
                      </font>

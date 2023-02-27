@@ -1,0 +1,6 @@
+
+#item-table .table-row-cell{
+    -fx-font: 15 system;
+    -fx-label-padding: 10px 2px 10px 2px;
+    -fx-cell-size: 35px;
+}

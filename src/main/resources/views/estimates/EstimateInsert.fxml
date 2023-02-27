@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nuovo Preventivo">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Nuovo Preventivo">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -47,8 +47,8 @@
                   <DatePicker fx:id="estimateDate" prefHeight="31.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
                      <children>
-                        <Hyperlink onAction="#applyFilter" style="-fx-text-fill: -fx-accent; -fx-underline: false;" text="Cerca un client" />
-                        <Hyperlink fx:id="removeFilter" onAction="#removeFilter" style="-fx-text-fill: -fx-accent; -fx-underline: false;" text="Rimuovi filtro" />
+                        <Hyperlink onAction="#applyFilter" styleClass="hyperlink"  text="Cerca un client" />
+                        <Hyperlink fx:id="removeFilter" onAction="#removeFilter" styleClass="hyperlink" text="Rimuovi filtro" />
                      </children>
                   </HBox>
                </children>

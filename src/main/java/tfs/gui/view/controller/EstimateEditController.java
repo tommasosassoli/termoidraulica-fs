@@ -123,17 +123,6 @@ public class EstimateEditController extends AbstractController {
 		});
 
 		// items table
-		descriptionCol.setCellFactory(tc -> {
-			TableCell<Item, String> cell = new TableCell<>();
-			Text text = new Text();
-			cell.setGraphic(text);
-			cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
-			text.wrappingWidthProperty().bind(descriptionCol.widthProperty());
-			text.textProperty().bind(cell.itemProperty());
-			text.setStyle("-fx-font: 15 system;");
-			cell.setPadding(new Insets(10, 5, 10, 5));
-			return cell;
-		});
 		descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 		umCol.setCellValueFactory(new PropertyValueFactory<>("um"));
 		qtCol.setCellValueFactory(new PropertyValueFactory<>("qt"));

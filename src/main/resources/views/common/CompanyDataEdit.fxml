@@ -18,7 +18,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifica Dati Azienda">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Modifica Dati Azienda">
                      <font>
                         <Font size="36.0" />
                      </font>

@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nuova Ricevuta">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Nuova Ricevuta">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -41,11 +41,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID ESTERNO" textAlignment="RIGHT" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="ID ESTERNO" textAlignment="RIGHT" />
                   <TextField fx:id="foreignId" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIZIONE" textAlignment="RIGHT" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="DESCRIZIONE" textAlignment="RIGHT" GridPane.rowIndex="1" />
                   <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATA di RIFERIMENTO" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="DATA di RIFERIMENTO" GridPane.rowIndex="2" />
                   <DatePicker fx:id="date" prefHeight="31.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <padding>
