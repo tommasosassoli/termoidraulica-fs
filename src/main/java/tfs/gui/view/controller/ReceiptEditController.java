@@ -47,6 +47,8 @@ public class ReceiptEditController extends AbstractController {
 	@FXML
 	private Text totalWithTax;
 	@FXML
+	private Button saveBtn;
+	@FXML
 	private TableView<Riba> ribaTable = new TableView<>();
 	@FXML
 	private TableColumn<Riba, Integer> numberCol = new TableColumn<>();
@@ -62,15 +64,6 @@ public class ReceiptEditController extends AbstractController {
 	}
 
 	public void initialize() {
-		foreignId.focusedProperty().addListener((obs, oldVal, newVal) -> {
-			if (!newVal)
-				notifyChanges();
-		});
-		description.focusedProperty().addListener((obs, oldVal, newVal) -> {
-			if (!newVal)
-				notifyChanges();
-		});
-
 		amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 		expireDateCol.setCellValueFactory(new PropertyValueFactory<>("expireDate"));
 		paidCol.setCellValueFactory(new PropertyValueFactory<>("paid"));
@@ -207,12 +200,18 @@ public class ReceiptEditController extends AbstractController {
 	}
 
 	@FXML
+	private void enableSaveBtn() {
+		saveBtn.setDisable(false);
+	}
+
+	@FXML
 	private void changeReceiptFields() {
 		receipt.setForeignId(foreignId.getText());
 		receipt.setDescription(description.getText());
 		receipt.setDate(date.getValue());
 		receipt.setTaxRate(taxRate.getValue());
 		notifyChanges();
+		saveBtn.setDisable(true);
 	}
 
 	private void notifyRibaChanges() {
