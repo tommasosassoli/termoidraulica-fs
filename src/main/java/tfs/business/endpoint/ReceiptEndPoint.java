@@ -26,4 +26,8 @@ public class ReceiptEndPoint {
     public Receipt deleteReceipt(String id) {
         return ReceiptDaoFactory.getDao().deleteReceipt(id);
     }
+
+    public List<Receipt> getExpiringReceipt() {
+        return ReceiptDaoFactory.getDao().getExpiringReceipt();
+    }
 }

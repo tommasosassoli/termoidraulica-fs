@@ -3,6 +3,7 @@ package tfs.gui.view.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ import tfs.gui.util.StringComparator;
 import tfs.gui.view.AbstractController;
 import tfs.gui.view.ViewManager;
 import tfs.gui.view.tasks.OpenViewTask;
+import tfs.service.LogService;
 
 public class ReceiptListController extends AbstractController {
 	private ReceiptEndPoint endPoint = new ReceiptEndPoint();
@@ -28,6 +30,8 @@ public class ReceiptListController extends AbstractController {
 	private TextField searchBar;
 	@FXML
 	private ImageView cancelFilter;
+	@FXML
+	private ComboBox<String> boxSelector;
 	@FXML
 	private TableView<Receipt> receiptsTable = new TableView<>();
 	@FXML
@@ -55,17 +59,38 @@ public class ReceiptListController extends AbstractController {
 				openReceipt();
 		});
 
+		// receipt selector
+		ObservableList<String> items = FXCollections.observableArrayList();
+		items.add("In scadenza");
+		items.add("Tutti");
+		boxSelector.setItems(items);
+		boxSelector.getSelectionModel().selectFirst();
 	}
 
 	@Override
 	public void refresh() {
-		masterList = getReceipts();
+		String sel = boxSelector.getSelectionModel().getSelectedItem();
+
+		if (sel.equals("Tutti"))
+			masterList = getReceipts();
+		else if (sel.equals("In scadenza"))
+			masterList = getExpiringReceipts();
+		else
+			LogService.warning(ReceiptListController.class, "Error during box selection", true);
+
 		receiptsTable.setItems(masterList);
 	}
 
 	private ObservableList<Receipt> getReceipts() {
 		ObservableList<Receipt> list = FXCollections.observableArrayList();
 		list.addAll(endPoint.getReceiptList());
+
+		return list;
+	}
+
+	private ObservableList<Receipt> getExpiringReceipts() {
+		ObservableList<Receipt> list = FXCollections.observableArrayList();
+		list.addAll(endPoint.getExpiringReceipt());
 
 		return list;
 	}
@@ -102,6 +127,11 @@ public class ReceiptListController extends AbstractController {
 		task.setOnFailed(e -> progressIndicatorLayer.setVisible(false));
 
 		new Thread(task).start();
+	}
+
+	@FXML
+	private void boxSelectorChange() {
+		this.refresh();
 	}
 
 	@FXML

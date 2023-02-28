@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,11 +13,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="757.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="searchBar" layoutX="198.0" layoutY="14.0" onAction="#applyFilter" prefHeight="36.0" prefWidth="468.0" promptText="RICERCA NELLA LISTA" />
-      <Button layoutX="678.0" layoutY="15.0" mnemonicParsing="false" onAction="#applyFilter" prefHeight="29.0" prefWidth="39.0">
+      <TextField fx:id="searchBar" layoutX="198.0" layoutY="14.0" onAction="#applyFilter" prefHeight="36.0" prefWidth="346.0" promptText="RICERCA NELLA LISTA" />
+      <Button layoutX="557.0" layoutY="15.0" mnemonicParsing="false" onAction="#applyFilter" prefHeight="29.0" prefWidth="39.0">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,6 +26,12 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Label layoutX="645.0" layoutY="22.0" text="VISUALIZZA:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="boxSelector" layoutX="730.0" layoutY="16.0" onAction="#boxSelectorChange" prefHeight="33.0" prefWidth="108.0" />
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">

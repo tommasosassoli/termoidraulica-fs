@@ -10,4 +10,5 @@ public interface ReceiptDao extends DaoInterface {
     Receipt getReceipt(String id);
     boolean updateReceipt(Receipt r);
     Receipt deleteReceipt(String id);
+    List<Receipt> getExpiringReceipt();
 }

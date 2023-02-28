@@ -150,6 +150,41 @@ public class RDBReceiptDao implements ReceiptDao {
         return null;
     }
 
+    @Override
+    public List<Receipt> getExpiringReceipt() {
+        Connection conn = RDBConnection.getInstance().getConnection();
+        if (conn != null) {
+            String sql = "SELECT DISTINCT id, foreignId, description, date " +
+                    "FROM Receipt rp " +
+                    "JOIN Riba rb ON rp.id = rb.receipt " +
+                    "WHERE rb.paid = false AND rb.expireDate <= (NOW() + interval '1 month') " +
+                    "ORDER BY date DESC;";
+
+            try {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+
+                List<Receipt> list = new ArrayList<>();
+                while (rs.next()) {
+                    Receipt r = createReceipt(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getTimestamp(4), null);
+                    list.add(r);
+                }
+                return list;
+
+            } catch (SQLException e) {
+                LogService.error(this.getClass(), "Error during expiring receipt list select", true, e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    LogService.error(this.getClass(), "Error during closing connection", false, e);
+                }
+            }
+        }
+        return null;
+    }
+
     // HELPER
 
     private boolean delete(Connection conn, int id) throws SQLException {
