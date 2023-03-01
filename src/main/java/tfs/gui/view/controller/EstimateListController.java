@@ -1,6 +1,9 @@
 package tfs.gui.view.controller;
 
 import java.time.LocalDateTime;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
@@ -43,6 +46,8 @@ public class EstimateListController extends AbstractController {
 	private ComboBox<String> searchField;
 	@FXML
 	private ImageView cancelFilter;
+	@FXML
+	private ComboBox<String> dateFilterBox;
 
 	public EstimateListController(ViewManager viewManager) {
 		super(viewManager);
@@ -62,11 +67,24 @@ public class EstimateListController extends AbstractController {
 
 		searchField.setItems(FXCollections.observableArrayList("ID", "Customers")); // init searchField
 		searchField.setValue("Customers");
+
+		// date filter
+		List<String> years = new ArrayList<>();
+		for (int i = Year.now().getValue() ; i >= 2019; i--)
+			years.add(String.valueOf(i));
+		years.add("Tutti");
+
+		dateFilterBox.setItems(FXCollections.observableArrayList(years));
+		dateFilterBox.getSelectionModel().selectFirst();
 	}
 
 	@Override
 	public void refresh() {
-		estimateTable.setItems(getEstimates());
+		String item = dateFilterBox.getSelectionModel().getSelectedItem();
+		if (item.equals("Tutti"))
+			estimateTable.setItems(getEstimates());
+		else
+			estimateTable.setItems(getEstimates(Integer.parseInt(item)));
 	}
 
 	@FXML
@@ -100,6 +118,11 @@ public class EstimateListController extends AbstractController {
 	}
 
 	@FXML
+	private void changeDateFilter() {
+		this.refresh();
+	}
+
+	@FXML
 	private void backButton() {
 		this.getViewManager().activate(ViewResolver.HOME);
 	}
@@ -109,6 +132,17 @@ public class EstimateListController extends AbstractController {
 		list.addAll(estimateEndPoint.getEstimateList());
 		estimateMasterList = list;
 		return list;
+	}
+
+	private ObservableList<Estimate> getEstimates(int year) {
+		estimateMasterList = FXCollections.observableArrayList();
+		List<Estimate> list = estimateEndPoint.getEstimateList();
+		for (Estimate e : list) {
+			int y = e.getExpirationDate().getYear();
+			if (y == year)
+				estimateMasterList.add(e);
+		}
+		return estimateMasterList;
 	}
 
 	private void estimateOpen() {
