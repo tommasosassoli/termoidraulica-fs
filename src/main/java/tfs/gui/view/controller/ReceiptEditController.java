@@ -1,6 +1,7 @@
 package tfs.gui.view.controller;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ import tfs.gui.view.ViewManager;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.function.Consumer;
 
 public class ReceiptEditController extends AbstractController {
 	private ReceiptEndPoint endPoint = new ReceiptEndPoint();
@@ -57,7 +59,7 @@ public class ReceiptEditController extends AbstractController {
 	@FXML
 	private TableColumn<Riba, LocalDate> expireDateCol = new TableColumn<>();
 	@FXML
-	private TableColumn<Riba, Boolean> paidCol = new TableColumn<>();
+	private TableColumn<Riba, String> paidCol = new TableColumn<>();
 
 	public ReceiptEditController(ViewManager viewManager) {
 		super(viewManager);
@@ -66,7 +68,13 @@ public class ReceiptEditController extends AbstractController {
 	public void initialize() {
 		amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 		expireDateCol.setCellValueFactory(new PropertyValueFactory<>("expireDate"));
-		paidCol.setCellValueFactory(new PropertyValueFactory<>("paid"));
+		paidCol.setCellValueFactory(cellData ->
+				new SimpleStringProperty(
+						translatePaid(
+								cellData.getValue().isPaid()
+						)
+				)
+		);
 
 		taxRate.setItems(FXCollections.observableArrayList(new TaxRateEndPoint().getTaxRatesList()));
 
@@ -83,13 +91,16 @@ public class ReceiptEditController extends AbstractController {
 			notifyRibaChanges();
 		});
 
-
-		paidCol.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isPaid()));
-		paidCol.setCellFactory(ComboBoxTableCell.forTableColumn(true, false));
-		paidCol.setOnEditCommit((TableColumn.CellEditEvent<Riba, Boolean> t) -> {
-			(t.getRowValue()).setPaid(t.getNewValue());
+		paidCol.setCellFactory(ComboBoxTableCell.forTableColumn("pagato", "non pagato"));
+		paidCol.setOnEditCommit((TableColumn.CellEditEvent<Riba, String> t) -> {
+			Riba r = t.getRowValue();
+			r.setPaid(t.getNewValue().equals("pagato"));
 			notifyRibaChanges();
 		});
+	}
+
+	private String translatePaid(boolean p) {
+		return p ? "pagato" : "non pagato";
 	}
 
 	@Override
